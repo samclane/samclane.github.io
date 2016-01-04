@@ -1,10 +1,31 @@
 ---
 layout: post
-title: You're up and running!
+title: Hello World
 ---
 
-Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
+Hello world! This is my first blog post!
 
-![_config.yml]({{ site.baseurl }}/images/config.png)
+## Why? ##
 
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
+To test the different markup features of course!
+
+### This should be h3 size ###
+
+#### And finally h4 size ####
+
+* Why would I use a list?
+	- So I can include indentations!
+
+1. One
+2. Two
+3. Three
+
+```java
+public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu_main, menu);
+    return true;
+}
+```
+
+---
+***

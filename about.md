@@ -12,4 +12,4 @@ I'm currently searching for jobs/internships with a focus on Embedded Systems/Mi
 
 ### Contact me
 
-[samtq3@ms.edu](mailto:samtq3@mst.edu)
+[samtq3@mst.edu](mailto:samtq3@mst.edu)

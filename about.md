@@ -4,12 +4,12 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+I'm a Junior Computer Engineering student at Missouri University of Science and Technology. 
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+I'm currently searching for jobs/internships with a focus on Embedded Systems/Microcontrollers. If you are hiring, or have any information about job opportunities, please email me at the address below. 
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[samtq3@ms.edu](mailto:samtq3@mst.edu)

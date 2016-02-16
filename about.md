@@ -13,3 +13,6 @@ I'm currently searching for jobs/internships with a focus on Embedded Systems/Mi
 ### Contact me
 
 [samtq3@mst.edu](mailto:samtq3@mst.edu)
+[Github](https://github.com/samclane/)
+[LinkedIn](https://www.linkedin.com/in/samclane)
+

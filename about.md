@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I'm a Junior Computer Engineering student at Missouri University of Science and Technology. 
+I'm a Master's Computer Engineering student at Missouri University of Science and Technology. 
 
 ### More Information
 

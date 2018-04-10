@@ -3,8 +3,7 @@ layout: page
 title: About
 permalink: /about/
 ---
-
-I'm a Master's Computer Engineering student at Missouri University of Science and Technology. 
+I'm a Computer Engineer looking for a job!
 
 ### More Information
 

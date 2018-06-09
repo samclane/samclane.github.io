@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Compile-Time variables with Pyinstaller spec files
+title: Compile-time constants with Pyinstaller spec files
 subtitle: Insert version number and build time directly into your code!
 ---
 

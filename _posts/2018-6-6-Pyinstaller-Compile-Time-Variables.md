@@ -47,6 +47,8 @@ with open('default.ini', 'w') as f:
 # Rest of the boilerplate spec file build commands...
 ```
 
+EDIT: [I've uploaded my full spec file as a gist. Here you can see how the whole file goes together.](https://gist.github.com/samclane/cbf44116a3c1e1a9c5e11c5e932360d3) 
+
 So what's going on here? Well, I have 4 variables that I want to keep updated. The first 3 are self explanatory. `is_debug`
 enables certain debug statements in the code, and turns on the console in the background. The first block simply overwrites the
 `constants.py` file with the new values. The second block is a little more advanced. It reads in the existing `default.ini` file,

@@ -2,6 +2,7 @@
 layout: post
 title: Create a Scale widget with a gradient background in Tkinter
 subtitle: Give users a more representative slider display using tkinter Canvas widgets
+comments: true
 ---
 
 If you've ever used any image/video editing software, you've likely come across a color-slider looking something like 

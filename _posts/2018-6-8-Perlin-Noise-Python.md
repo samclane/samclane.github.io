@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Exploring Perlin Noise in Python
+comments: true
 ---
 
 First of all, I would like to say that the code in this post was inspired by Adrian Biagioli's article on Perlin Noise,

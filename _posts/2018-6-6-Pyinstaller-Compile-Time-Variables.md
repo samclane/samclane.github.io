@@ -2,6 +2,7 @@
 layout: post
 title: Compile-time constants with Pyinstaller spec files
 subtitle: Insert version number and build time directly into your code!
+comments: true
 ---
 
 When I was developing [LIFX-Control-Panel](https://github.com/samclane/LIFX-Control-Panel), I was constantly running into

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Adding Keybinds to your Python App
+comments: true
 ---
 
 Today, many of the desktop applications we write are designed to live in the background or desktop tray. They may be 

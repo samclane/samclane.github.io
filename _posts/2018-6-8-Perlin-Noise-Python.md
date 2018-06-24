@@ -100,8 +100,8 @@ The `grad` function's goal is to generate the random vectors for the unit cube c
 presents two ways of doing this.
 
 ```python
-def grad_slow(hash, x, y, z):
-    h = hash & 15
+def grad_slow(hash_list, x, y, z):
+    h = hash_list & 15
     u = x if h < 8 else y
     if h < 4:
         v = y
@@ -111,8 +111,8 @@ def grad_slow(hash, x, y, z):
         v = z
     return (u if (h & 1) == 0 else -u) + (v if (h & 2) == 0 else -v)
     
-def grad_fast(hash, x, y, z):
-    switch = hash & 0xF
+def grad_fast(hash_list, x, y, z):  # Will be referred to as just 'grad' from now on.
+    switch = hash_list & 0xF
     if switch == 0x0:
         return x + y
     elif switch == 0x1:
@@ -148,7 +148,7 @@ def grad_fast(hash, x, y, z):
 ```
 
 These two functions essentially produce the same results. However, `grad_fast` simply returns the pre-calculated results
-for the entire state space of `hash & 0x0F`. This means we only have to make 1 comparison instead of 6, and one logical
+for the entire state space of `hash_list & 0x0F`. This means we only have to make 1 comparison instead of 6, and one logical
 AND statement instead of 3. Because of this, henceforth `grad` will refer to `grad_fast`. 
 
 Now, we add a quick linear interpolation function, `lerp`.
@@ -292,5 +292,7 @@ def main():
 Running this gives us a beautify image like this one:
 
 ![color noise](../images/perlin-noise/color_noise.bmp)
+
+The code for this exercise can be found [here](https://github.com/samclane/Perlin_Noise)
 
 In my next Perlin Noise post, I'll be talking about 3D Noise, and the `noise` python library. 

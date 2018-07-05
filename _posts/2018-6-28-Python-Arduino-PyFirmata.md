@@ -385,7 +385,8 @@ the actual LED array was mounted backwards on the board, and so the lights were 
 remember that row indices begin at `1`, not `0`. 
 
 Using the code from the main loop as an example, you can instantiate and use the matrix anywhere you want. I've got mine
-displaying Discord mic connection status, which I might explain in another article. 
+displaying Discord mic connection status, which I might explain in another article. [In the meantime, you can check out 
+that repository here](https://github.com/samclane/DiscordMatrix).
 
 <br />
 ---

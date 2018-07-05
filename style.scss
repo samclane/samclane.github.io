@@ -114,7 +114,10 @@ sup {
     font-size: smaller;
     vertical-align: super;
 }
-
+sub {
+    font-size: smaller;
+    vertical-align: sub;
+}
 // Fixes images in popup boxes from Google Translate
 .gmnoprint img {
   max-width: none;

@@ -110,6 +110,11 @@ img {
   max-width: 100%;
 }
 
+sup {
+    font-size: smaller;
+    vertical-align: super;
+}
+
 // Fixes images in popup boxes from Google Translate
 .gmnoprint img {
   max-width: none;
@@ -259,11 +264,6 @@ nav {
     color: $gray;
     font-size: 22px;
     font-style: italic;
-  }
-
-  sup {
-    font-size: smaller;
-    vertical-align: super;
   }
 
   .comments {

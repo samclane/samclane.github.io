@@ -15,6 +15,20 @@ layout: default
     Written on {{ page.date | date: "%B %e, %Y" }}
   </div>
 
+  <div class="previewbox">
+    {% assign posts = site.posts | where_exp:"post", "post.title != page.title" %}
+    {% for post in posts reversed limit:3 %}
+      <div class="preview">
+
+        <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+
+        <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+      </div>
+    {% endfor %}
+  </div>
+
+
+
   {% if page.comments %}
     {% include disqus.html %}
   {% endif %}

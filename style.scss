@@ -110,6 +110,12 @@ img {
   max-width: 100%;
 }
 
+article img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 sup {
     font-size: smaller;
     vertical-align: super;

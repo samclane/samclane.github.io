@@ -25,7 +25,7 @@ we're going to do is change our `post` layout to include some links. Since this 
 template language, I didn't get too crazy. But, after we're done, we should get something looking like the bottom of
 this article, which should look a little like this:
 
-<img src="../images/jekyll-links/example.png" align="middle"/>
+![example](../images/jekyll-links/example.png)
 
 Let's look at the original `post.html`, which can be found in the `/_layouts` folder.
 

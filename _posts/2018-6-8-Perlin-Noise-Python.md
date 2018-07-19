@@ -289,7 +289,7 @@ def main():
     print("Time elapsed: " + str(time() - starttime))
 ```
 
-Running this gives us a beautify image like this one:
+Running this gives us a beautiful image like this one:
 
 ![color noise](../images/perlin-noise/color_noise.bmp)
 

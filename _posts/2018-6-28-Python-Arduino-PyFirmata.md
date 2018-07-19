@@ -18,7 +18,7 @@ I went to school for Computer Engineering and have worked 5 months for an embedd
 a decent amount of experience with C (of which I consider Sketch to be a derivative). It's not fast to develop in. There's 
 a lot of boilerplate code one has to write, usually tightly coupled to whatever hardware or framework you're working with.
 On top of that, C isn't object-oriented, and trying to import those design patterns usually ends up feeling like writing 
-plain Javascript<sup>1</sup>. That is to say, not good for one's self esteem.
+plain Javascript<sup><a href="#1">1</a></sup>. That is to say, not good for one's self esteem.
 
 But, I should stop railing against C before I lose all credibility and you stop reading the article. In short; I 
 don't like leaving my comfort zone and C makes my brain hurt. Besides, the main star of the show here isn't Python; it's 
@@ -311,7 +311,7 @@ We've made it this far, and yet we haven't actually set-up the LED matrix. We've
 ```
 
 Ah yes, the core of embedded systems: magic numbers during device setup. I'll admit, this is the part where I really 
-leaned on my "hacker ethos"<sup>2</sup> here, so I didn't bother to read the MAX7219 whitepaper and understand what the
+leaned on my "hacker ethos"<sup><a href="#2">2</a></sup> here, so I didn't bother to read the MAX7219 whitepaper and understand what the
 numbers are doing. The Arduino Gods have already bestowed their source code upon us; I don't want to question their 
 wisdom and mercy.
 
@@ -387,11 +387,9 @@ remember that row indices begin at `1`, not `0`.
 Using the code from the main loop as an example, you can instantiate and use the matrix anywhere you want. I've got mine
 displaying Discord mic connection status, which I have [explained in a new article](http://samclane.github.io/Arduino-Discord-Matrix/).
 
-<br />
 ---
-
-<sup>1</sup>I shouldn't slight Javascript though, as I actually found out about Firmata through the Node.js library 
+<sup id="1">1</sup>I shouldn't slight Javascript though, as I actually found out about Firmata through the Node.js library
 [Johnny-Five](http://johnny-five.io/), which also has a built-in LED-Matrix support (meaning you wouldn't have had to do
 this tutorial). Go check it out.
 
-<sup>2</sup>Read "arrogant and lazy"
+<sup id="2">2</sup>Read "arrogant and lazy"

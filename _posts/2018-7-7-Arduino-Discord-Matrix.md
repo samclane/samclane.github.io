@@ -20,7 +20,7 @@ writing open-source software, and a very positive one at that.
 Since I am on Discord very often, I will sometimes forget that I'm still voice-connected and leave the computer. This 
 usually results in a torrent of messages from my friends complaining about my dogs barking into my microphone while I'm away
 (they've gotta hold down the fort somehow). However, it's become enough of an inconvenience that I decided to come up with a 
-simple solution. While I have 2 monitors, like any self-respecting developer<sup>1</sup>, the actual Discord window 
+simple solution. While I have 2 monitors, like any self-respecting developer<sup><a href="#1">1</a></sup>, the actual Discord window
 still somehow finds itself at buried below a couple of browser windows within no-time. So, at a glance, I cannot tell if 
 I'm A) in the server and B) muted/deafened. This can be additionally challenging while playing a game that can't be 
 paused or alt-tabbed to check on Discord. My first attempt at tackling the problem was to try and [write my own custom
@@ -178,7 +178,7 @@ through a config file, which we will now read from.
 It might be a little safer to `pickle` the password instead of adding it to the config file, but I like to live 
 dangerously. Just know that your password should go in `config.ini` and not `default.ini`. And don't ever share a 
 `config.ini` with anyone if it has your password in it. And **_especially_** don't commit your `config.ini` to a public 
-repository<sup>2</sup>.
+repository<sup><a href="#2">2</a></sup>.
 
 The other benefit of using a custom `config.ini` is that you can safe custom Arduino pin-outs for the MAX, as we'll see 
 below. This code should look a lot like the `__main__` function from the original LedMatrix article. Also, remember we're
@@ -288,9 +288,7 @@ hear me, even if I'm not sitting at my desk (that display is pretty bright!). An
 to be made, like a separate icon for being "deafened" than "muted".  Let me know if you find any bugs or are unable to 
 get the code to work. 
 
-<br />
 ---
+<sup id="1">1</sup>Read: Nerd
 
-<sup>1</sup>Read: Nerd
-
-<sup>2</sup>This may or may not be autobiographical 
+<sup id="2">2</sup>This may or may not be autobiographical

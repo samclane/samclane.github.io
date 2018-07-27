@@ -149,8 +149,52 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
     return y
 ```
 
-We use `sosfilt`<sup><a href="#1">1</a></sup> as it can handle higher orders without giving strange negative results
-(like the `ba` filter can).
+The `butter_bandpass` function simply generates the filter coefficients. We use `sosfilt`<sup><a href="#1">1</a></sup> as
+it can handle higher orders without giving strange negative results (like the `ba` filter can). Then, in `butter_bandpass_filter`,
+we take the cutoff frequencies of the pass band, generate the coefficients on the fly, and then return the filtered data.
+
+```python
+def discretize_plot(data, xbins, ybins, maxval):
+    downsample = decimate(data, int(ceil(len(data) / xbins)), zero_phase=True)
+    return [int((val / maxval) * ybins) for val in downsample]
+```
+
+Discretizing the plot involves first decimating the spectrum along the x-axis (frequency). Since we want the resulting
+number of samples to be `xbins`, our decimation factor is determined by dividing the length of the input data by the number
+xbins we want (which will be 8). We then use a list comprehension to scale every y-value, from the range [0, `maxval`] (float) to
+[0, `ybins`] (int), and return that list.
+
+With that out of the way, we can finally implement our `process_data` function.
+
+```python
+    def process_data(self, in_data):
+        # get and convert the data to float
+        audio_data = np.fromstring(in_data, np.int16)
+        # apply band-pass to amplify human speech range
+        audio_data = butter_bandpass_filter(audio_data, 300, 3400, self.RATE, 20)
+        # Fast Fourier Transform, 10*abs to scale it up and make sure it's all positive
+        dfft = 10*abs(np.fft.rfft(audio_data))[:300]
+
+        # Force the new data into the plot, but without redrawing axes.
+        # If uses plt.draw(), axes are re-drawn every time
+        self.li.set_xdata(np.arange(len(audio_data)))
+        self.li.set_ydata(audio_data)
+        self.li2.set_xdata(np.arange(len(dfft)) * 10.)
+        self.li2.set_ydata(dfft)
+        self.li3.set_xdata(np.arange(8))
+        self.li3.set_ydata(discretize_plot(dfft, 8, 8, 1000000))
+
+        for a in self.annotation_list:
+            a.remove()
+            self.annotation_list.remove(a)
+        for i, txt in enumerate(self.li3.get_ydata()):
+            self.annotation_list.append(
+                self.ax[2].annotate(str(txt), (self.li3.get_xdata()[i], self.li3.get_ydata()[i])))
+
+        # Show the updated plot, but without blocking
+        plt.pause(1 / 30)
+        return keep_going
+```
 
 ---
 <sup id="1">1</sup>`sos` stands for Second-order sections, which you can read about more [here](https://en.wikipedia.org/wiki/Digital_biquad_filter)

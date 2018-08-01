@@ -3,21 +3,21 @@ layout: post
 title: Create a low-resolution, real-time sound spectrum display
 subtitle: Wow your friends by looking like a less-than-professional sound engineer
 comments: true
-published: false
+published: true
 ---
 
 I've made a [few](http://samclane.github.io/Python-Arduino-PyFirmata/) [posts](http://samclane.github.io/Arduino-Discord-Matrix/)
 about Arduino and LED Matrices. In continuing that series, I wanted to make an implementation that used all 64 LEDs in
 the matrix meaningfully, instead of as just a canvas to draw pictures to. This project originally came out of the Discord
-Status display project, as I wanted to have the matrix display the Fourier Spectrum of my speech when the mic was enabled.
+Status display project, as I wanted to have the matrix display the Fourier Spectrum of my speech whenever the mic was enabled.
 However, this proved to be too much at one time, and so I split the project into two parts. As I began to get the second
-part working, I found that it might be too processor intensive to be used practically, so I kept to using static images
+part working, I found that it might be too processor intensive to be used practically, so I resorted to using static 8x8 binary "images"
 as my display for the project. However, I still did manage to get the spectral display to work, and so I've decided to
 share it.
 
 ### Materials
 
-* PC with Python 3 and the following packages:
+* Computer<sup><a href="#1">1</a></sup> with Python 3 and the following packages:
   * `pyfirmata`
   * `matplotlib`
   * `numpy`
@@ -33,12 +33,10 @@ The complete code can be found [here](https://github.com/samclane/SoundDisplay).
 From the completed code repository, download the file `led_matrix.py` and place it in a new folder. This is the code that will allow us to talk to the
 matrix. I already discussed how I wrote the driver, which can be found [here](http://samclane.github.io/Python-Arduino-PyFirmata/).
 
-Now, create another file called `spectrum.py`. Here is where we will do all the dirty work. In order for this to all make
-some kind of sense, we're not just going to grab data and FFT it willy-nilly. Rather, we're going to use `matplotlib` to
-display several figures of data at various stages of processing, all in real time. First, we'll show the raw microphone
+Now, create another file called `spectrum.py`. Here is where we will do all the dirty work. In order for this project to all make
+some kind of sense, we're not just going to grab data, FFT it, and blast it off to the Arduino, all willy-nilly like. Rather, we're going to use `matplotlib` to display several figures of data at various stages of processing, all in real time. First, we'll show the raw microphone
 input (time-domain). Next, we'll show the spectrum of the data in the frequency domain (after we apply a windowing function
-to boost the human vocal frequencies). Finally, we'll graph the spectrum decimated and discretized to fit on the 8x8
-display.
+to boost the human vocal frequencies). Finally, we'll graph the spectrum, [decimated and downsampled](https://dspguru.com/dsp/faqs/multirate/decimation/), "discretizing" the y values to fit on the 8x8 display.
 
 ```python
 import threading
@@ -53,9 +51,8 @@ from scipy.signal import butter, sosfiltfilt, decimate
 
 import led_matrix
 
-
-
 global keep_going # will use to start and stop the "animation"
+
 
 class SpectrumPlotter:
     def __init__(self):
@@ -66,8 +63,7 @@ class SpectrumPlotter:
         self.annotation_list = []
 ```
 
-We initialize the plot, microphone, then matrix (in that order). We also keep an annotation list, which we'll use to draw
-numbers on the values of the final plot.
+We initialize the plot, microphone, then matrix (in that order). We also keep an annotation list, which we'll use to draw numbers on the values of the final plot (making debugging the hardware a little easier).
 
 ```python
     def init_plot(self):
@@ -104,8 +100,8 @@ numbers on the values of the final plot.
         print('Initializing mic...')
         FORMAT = pyaudio.paInt16  # We use 16bit format per sample
         CHANNELS = 1
-        self.RATE = 44100 // 2
-        self.CHUNK = 1024  # 1024bytes of data red from a buffer
+        self.RATE = 44100 // 2  # sample rate
+        self.CHUNK = 1024  # size of the frame
 
         self.audio = pyaudio.PyAudio()
 
@@ -132,7 +128,7 @@ It performs the bandpass windowing function on the data, isolating the voice fre
 It then takes the real-valued Fast Fourier Transform of the filtered data, converting it to a frequency-domain spectrum.
 Finally, it adds the data to the 3 plots, providing a discretized spectrum in the form of the 3rd plot.
 
-However, we'll need to define the  bandpass-filter and discretize functions first.
+However, we'll need to define the bandpass-filter and downsampling functions first.
 
 ```python
 def butter_bandpass(lowcut, highcut, fs, order=5):
@@ -149,8 +145,8 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
     return y
 ```
 
-The `butter_bandpass` function simply generates the filter coefficients. We use `sosfilt`<sup><a href="#1">1</a></sup> as
-it can handle higher orders without giving strange negative results (like the `ba` filter can). Then, in `butter_bandpass_filter`,
+The `butter_bandpass` function simply generates the filter coefficients. We use `sosfilt`<sup><a href="#2">2</a></sup>, as
+it can handle higher orders without giving strange negative results (like the `ba` filter does). Then, in `butter_bandpass_filter`,
 we take the cutoff frequencies of the pass band, generate the coefficients on the fly, and then return the filtered data.
 
 ```python
@@ -184,6 +180,7 @@ With that out of the way, we can finally implement our `process_data` function.
         self.li3.set_xdata(np.arange(8))
         self.li3.set_ydata(discretize_plot(dfft, 8, 8, 1000000))
 
+        # Refresh annotations for the "LED" graph
         for a in self.annotation_list:
             a.remove()
             self.annotation_list.remove(a)
@@ -196,5 +193,62 @@ With that out of the way, we can finally implement our `process_data` function.
         return keep_going
 ```
 
+In a nutshell, the `process_data` funciton:
+1. Performs the necessary DSP functions on the current audio frame.
+2. Draws the data to the 3 debug graphcs
+3. Updates annotations on the "LED" graph (#3)
+
+Finally, we'll define a function that starts the processing, and writes the contents of the final graph out to the LED Matrix. 
+
+```python
+    def start_listening(self):
+        global keep_going
+        # Open the connection and start streaming the data
+        self.stream.start_stream()
+        print("\n+---------------------------------+")
+        print("| Press Ctrl+C to Break Recording |")
+        print("+---------------------------------+\n")
+
+        def update_matrix():
+            while True:
+                for col, val in enumerate(reversed(self.li3.get_ydata())):
+                    self.matrix.maxAll(int(col + 1), int((2 * pow(2, val - 1)) - 1))
+                sleep(1 / 30)
+
+        threading.Thread(target=update_matrix, daemon=True).start()
+
+        # Loop so program doesn't end while the stream callback's
+        # itself for new data
+        while keep_going:
+            try:
+                self.process_data(self.stream.read(self.CHUNK))
+            except KeyboardInterrupt:
+                keep_going = False
+
+        # Close up shop (currently not used because KeyboardInterrupt
+        # is the only way to close)
+        self.stream.stop_stream()
+        self.stream.close()
+
+        self.audio.terminate()
+```
+
+We open up the microphone stream so we can begin reading data. `update_matrix` is defined as a periodic callback that sends data to the Arduino in a background thread. `process_data` is then called in a loop, which continously pulls from the microphone stream and processes the data, as discussed earlier. `self.CHUNK` is the number of samples per frame. 
+
+Finally, here's the `main` statement to get the code moving:
+
+```python
+if __name__ == "__main__":
+    p = SpectrumPlotter()
+    p.start_listening()
+```
+
+Currently, as there are several different threads going on (processing, plotting, arduino) that neither `Ctrl+C` nor closing the plot window will close the program. It has to be manually killed via the Stop button in your IDE or through the Task Manager. This project was a merely an experiment, trying to show how PyFirmata (and my LedMatrix module) can be used to extend the capabilities of both the Arduino and the PC. The Arduino can't do real time signal processing of this magnitude, and the PC doesn't have native support for an 8x8 display. On a more abstract note, we're combining high-level programming techinques and modular advantages of embedded systems to create something new and fun<sup><a href="#3">3</a></sup>. Since the MAX7219 matrices can be dasiy-chained, it's possibly to build an 8x8<sup>n-1</sup> matrix, where `n` = # of matrices in the chain. This would allow higher resolution of the frequencies, as the decimation factor would decrese. If I get more matricies, I'd love to explore this further. 
+
+
 ---
-<sup id="1">1</sup>`sos` stands for Second-order sections, which you can read about more [here](https://en.wikipedia.org/wiki/Digital_biquad_filter)
+<sup id="1">1</sup>`sos` stands for Second-order sections, which you can read about more [here](https://en.wikipedia.org/wiki/Digital_biquad_filter).
+
+<sup id="2">2</sup>I have only tested on PC (Win10), but this should theoretically work on Linux/OSX, although you may have to change the `'COM3'` to however your system names serial ports.
+
+<sup id="3">3</sup>If you think this is fun, you must be a weird nerd.

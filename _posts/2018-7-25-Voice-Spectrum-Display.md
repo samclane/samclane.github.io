@@ -193,9 +193,9 @@ With that out of the way, we can finally implement our `process_data` function.
         return keep_going
 ```
 
-In a nutshell, the `process_data` funciton:
+In a nutshell, the `process_data` function:
 1. Performs the necessary DSP functions on the current audio frame.
-2. Draws the data to the 3 debug graphcs
+2. Draws the data to the 3 debug graphs
 3. Updates annotations on the "LED" graph (#3)
 
 Finally, we'll define a function that starts the processing, and writes the contents of the final graph out to the LED Matrix. 
@@ -233,7 +233,7 @@ Finally, we'll define a function that starts the processing, and writes the cont
         self.audio.terminate()
 ```
 
-We open up the microphone stream so we can begin reading data. `update_matrix` is defined as a periodic callback that sends data to the Arduino in a background thread. `process_data` is then called in a loop, which continously pulls from the microphone stream and processes the data, as discussed earlier. `self.CHUNK` is the number of samples per frame. 
+We open up the microphone stream so we can begin reading data. `update_matrix` is defined as a periodic callback that sends data to the Arduino in a background thread. `process_data` is then called in a loop, which continuously pulls from the microphone stream and processes the data, as discussed earlier. `self.CHUNK` is the number of samples per frame.
 
 Finally, here's the `main` statement to get the code moving:
 
@@ -243,12 +243,12 @@ if __name__ == "__main__":
     p.start_listening()
 ```
 
-Currently, as there are several different threads going on (processing, plotting, arduino) that neither `Ctrl+C` nor closing the plot window will close the program. It has to be manually killed via the Stop button in your IDE or through the Task Manager. This project was a merely an experiment, trying to show how PyFirmata (and my LedMatrix module) can be used to extend the capabilities of both the Arduino and the PC. The Arduino can't do real time signal processing of this magnitude, and the PC doesn't have native support for an 8x8 display. On a more abstract note, we're combining high-level programming techinques and modular advantages of embedded systems to create something new and fun<sup><a href="#3">3</a></sup>. Since the MAX7219 matrices can be dasiy-chained, it's possibly to build an 8x8<sup>n-1</sup> matrix, where `n` = # of matrices in the chain. This would allow higher resolution of the frequencies, as the decimation factor would decrese. If I get more matricies, I'd love to explore this further. 
+Currently, as there are several different threads going on (processing, plotting, arduino) that neither `Ctrl+C` nor closing the plot window will close the program. It has to be manually killed via the Stop button in your IDE or through the Task Manager. This project was a merely an experiment, trying to show how PyFirmata (and my LedMatrix module) can be used to extend the capabilities of both the Arduino and the PC. The Arduino can't do real time signal processing of this magnitude, and the PC doesn't have native support for an 8x8 display. On a more abstract note, we're combining high-level programming techniques and modular advantages of embedded systems to create something new and fun<sup><a href="#3">3</a></sup>. Since the MAX7219 matrices can be daisy-chained, it's possibly to build an 8x8<sup>n-1</sup> matrix, where `n` = # of matrices in the chain. This would allow higher resolution of the frequencies, as the decimation factor would decrease. If I get more matrices, I'd love to explore this further.
 
 
 ---
-<sup id="1">1</sup>`sos` stands for Second-order sections, which you can read about more [here](https://en.wikipedia.org/wiki/Digital_biquad_filter).
+<sup id="1">1</sup>I have only tested on PC (Win10), but this should theoretically work on Linux/OSX, although you may have to change the `'COM3'` to however your system names serial ports.
 
-<sup id="2">2</sup>I have only tested on PC (Win10), but this should theoretically work on Linux/OSX, although you may have to change the `'COM3'` to however your system names serial ports.
+<sup id="2">2</sup>`sos` stands for Second-order sections, which you can read about more [here](https://en.wikipedia.org/wiki/Digital_biquad_filter).
 
 <sup id="3">3</sup>If you think this is fun, you must be a weird nerd.

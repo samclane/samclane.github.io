@@ -130,15 +130,15 @@ And the code:
 #include <EEPROM.h>
 
 #define IO_USERNAME  "samclane"
-#define IO_KEY       "***REMOVED***"
+#define IO_KEY       "API_KEY"
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883
 
 #define LED_PIN D4
 #define EN_PIN D1
 
-const char ssid[] = "HouseWifi";
-const char pass[] = "***REMOVED***";
+const char ssid[] = "WIFI";
+const char pass[] = "PASS";
 
 const int sleepTime = 10;
 static int wakeCount = 0;

@@ -7,7 +7,7 @@ Journal buddy is my first official foray into Android app development. I have a 
 
 JournalBuddy is a simple journaling application for Android. The user creates entries every day, with a simple title and then an entry body. 
 
-![New entry screen as of 1/4/2016]({{ site.baseurl }}/images/new-entry.png "new entry")
+![New entry screen as of 1/4/2016](../images/new-entry/new-entry.png)
 
 The journal entries can be saved by the user. I'm still deciding if the entries should be saved in Internal memory, where the often personal journal entries can't be seen by others. Or, the entries could be saved in external memory as plain text files, so the user could easily export them or read them using another application if so desired. 
 

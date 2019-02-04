@@ -6,6 +6,10 @@ comments: true
 published: true
 ---
 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XP9y-oLs-9I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
 I've made a [few](http://samclane.github.io/Python-Arduino-PyFirmata/) [posts](http://samclane.github.io/Arduino-Discord-Matrix/)
 about Arduino and LED Matrices. In continuing that series, I wanted to make an implementation that used all 64 LEDs in
 the matrix meaningfully, instead of as just a canvas to draw pictures to. This project originally came out of the Discord

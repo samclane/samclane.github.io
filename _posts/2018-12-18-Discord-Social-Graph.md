@@ -6,6 +6,8 @@ comments: true
 published: true
 ---
 
+## Please be patient for link to load. I'm using a Heroku Hobby Dyno, which shuts down and has to restart.
+
 https://infinite-sands-83078.herokuapp.com/
 
 Please be patient, I'm using a free-tier Heroku account, so it's very slow to initially respond and to load. You may have to wait around a minute.

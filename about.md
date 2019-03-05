@@ -13,9 +13,10 @@ you are hiring, or have any information about job opportunities, please email me
 
 ### Contact me
 
-[samtq3@mst.edu](mailto:samtq3@mst.edu)
-
 [Github](https://github.com/samclane/)
 
 [LinkedIn](https://www.linkedin.com/in/samclane)
 
+[AngelList](https://angel.co/sawyer-5)
+
+[Ko-fi](Ko-fi.com/sawyermclane)

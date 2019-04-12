@@ -323,7 +323,9 @@ nav {
   width: 200px;
   height: 200px;
   overflow: hidden;
-  margin: 16px;
+  margin: 7px;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
 }
 
 .thumbnail img {
@@ -371,7 +373,7 @@ nav {
 }
 
 .popup {
-  background-color: #333333;
+  background-color: #5f5f5f;
   color: white;
   font-size: 16px;
   padding: 16px 32px;

@@ -314,8 +314,15 @@ nav {
   background-color: $lightGray;
 }
 
+//
+// .portfolio
+//
+
 .photo-gallery {
   list-style-type: none;
+  margin: auto;
+  width: 50%;
+  padding: 5px;
 }
 
 .thumbnail {
@@ -326,6 +333,10 @@ nav {
   margin: 7px;
   border: 1px solid #ccc;
   background-color: #fafafa;
+}
+
+.thumbnail:hover {
+  border: 1px solid #777;
 }
 
 .thumbnail img {

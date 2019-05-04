@@ -6,9 +6,9 @@ projects:
     - image_path: https://github.com/samclane/LIFX-Control-Panel/raw/master/res/screenshot.png
       title: LIFX-Control-Panel
       link: https://github.com/samclane/LIFX-Control-Panel
-    - image_path: https://github.com/samclane/DiscordMud/raw/master/screenshots/4.png
-      title: Discord MUD
-      link: https://github.com/samclane/DiscordMud
+    - image_path: https://github.com/samclane/Discordia/raw/master/screenshots/screen1.png
+      title: Discordia
+      link: https://github.com/samclane/Discordia
     - image_path: https://github.com/samclane/Perlin_Noise/raw/master/animation.gif?raw=true
       title: Perlin Noise
       link: https://github.com/samclane/Perlin_Noise
@@ -24,9 +24,9 @@ projects:
     - image_path: /images/portfolio/social-graph.png
       title: Discord Social Graph
       link: https://github.com/samclane/SocialGraphWebapp
-    - image_path: https://github.com/samclane/Discordia/raw/master/screenshots/screen1.png
-      title: Discordia
-      link: https://github.com/samclane/Discordia
+    - image_path: https://github.com/samclane/DiscordMud/raw/master/screenshots/4.png
+      title: Discord MUD
+      link: https://github.com/samclane/DiscordMud
     - image_path: https://github.com/samclane/gTTS-Demo/raw/master/hello/static/screenshot.png
       title: gTTS Demo
       link: https://stormy-earth-56044.herokuapp.com/

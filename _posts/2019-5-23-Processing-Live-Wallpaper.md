@@ -160,4 +160,4 @@ If you've been working with APDE this whole time, you can just change from `Demo
 
 This is just scratching the surface of what APDE can do. I hope to incorporate more of the Android API into my live wallpapers as development continues. 
 
-####[Source Code](https://github.com/samclane/GameOfLifeLiveWallpaper)
+[Source Code](https://github.com/samclane/GameOfLifeLiveWallpaper)

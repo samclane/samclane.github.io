@@ -14,7 +14,7 @@ This is why I was ecstatic when I found out about [Processing for Android](https
 
 When I first installed Processing for Android on my phone (APDE for short), I was pleased to find Conway's Game of Life as a sample. Putting a Game of Life live-wallpaper on my Android was one of the first things I did when I got my first smartphone. It was a simple black-and-white simulation, similar to the vanilla example provided by Processing. 
 
-### 2. What is Conway's Game of Life
+### 2. What is Conway's Game of Life?
 
 The Game of Life(GoL) is a "Game" created by  British mathematician John Horton Conway in 1970, and is the quintessential example of "Cellular Automata". In short, cellular automatons are systems consisting of "cells", each having a number of states. In GoL there are only 2 states: alive and dead. With every discrete iteration, the cells change their current state based on a function of their current state, and the states of their neighbors. The GoL only has 4 simple rules:
 
@@ -132,6 +132,8 @@ void draw() {
   ...
 }
 ```
+
+### 5. Finishing Touches
 
 Finally, we should give a little interactivity to this Wallpaper. After all, eventually the simulation will converge and stop producing any dynamic results. Touches/Clicks should bring the corresponding cell to life in the next frame. With the `setCell` function, this becomes trivial to make cross-platform:
 

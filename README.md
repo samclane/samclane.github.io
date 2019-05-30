@@ -3,7 +3,7 @@
 
 ---
 
-###[The Website](https://samclane.github.io/)
+### [The Website](https://samclane.github.io/)
 
 [Based on Barry Clark's jekyll-now](https://github.com/barryclark/jekyll-now)
 

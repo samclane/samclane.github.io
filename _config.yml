@@ -93,7 +93,7 @@ exclude:
 
 prose:
   rooturl: '_posts'
-  siteurl: 'http://samclane.github.io/'
+  siteurl: 'http://samclane.github.io'
   media: 'images'
   metadata:
     _posts:

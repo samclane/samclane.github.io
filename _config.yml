@@ -92,9 +92,9 @@ exclude:
   - CNAME
 
 prose:
-  rooturl: '_posts'
-  siteurl: 'http://samclane.github.io'
-  media: 'images'
+  rooturl: "_posts"
+  siteurl: "http://samclane.github.io"
+  media: "images"
   metadata:
     _posts:
       - name: "layout"

@@ -108,16 +108,17 @@ prose:
       - name: "subtitle"
         field:
           element: "text"
-          value: "subtitle"
+          value: ""
+          placeholder: "Subtitle..."
       - name: "comments"
         field:
           element: "checkbox"
           label: "comments"
           help: "allow disqus comments"
-          value: "true"
+          value: true
       - name: "published"
         field:
           element: "checkbox"
           label: "published"
           help: "publish the article on your blog"
-          value: "false"
+          value: false

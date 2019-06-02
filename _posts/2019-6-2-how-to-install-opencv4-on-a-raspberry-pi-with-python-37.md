@@ -47,8 +47,10 @@ Finally run the following to set Python 3.7 as your default interpreter:
 
 ```shell
 pyenv global 3.7.2
-Ensure this works by running python --version; you should get "Python 3.7.2" as output.
 ```
+
+Ensure this works by running python --version; you should get "Python 3.7.2" as output.
+
 
 3. Getting OpenCV
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-published: false
+published: true
 title: How to install OpenCV4 on a Raspberry Pi with Python 3.7
 subtitle: If you're version-locked and have nowhere to turn to
 ---
@@ -170,3 +170,84 @@ Because we're using `virtualenvwrapper`, none of the correct Python files or lib
 ```shell
 cmake -D CMAKE_BUILD_TYPE=RELEASE     -D CMAKE_INSTALL_PREFIX=/usr/local     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules     -D ENABLE_NEON=ON     -D ENABLE_VFPV3=ON     -D BUILD_TESTS=OFF     -D OPENCV_ENABLE_NONFREE=ON     -D INSTALL_PYTHON_EXAMPLES=OFF     -D BUILD_EXAMPLES=OFF -DPYTHON3_EXECUTABLE=/home/pi/.virtualenvs/cv/bin/python -DPYTHON3_INCLUDE_DIR=/home/pi/.virtualenvs/cv/include/python3.7m -DPYTHON3_LIBRARY=/home/pi/.pyenv/versions/3.7.2/lib/libpython3.so -D BUILD_opencv_python3=yes ..
 ```
+
+This will take a few minutes to complete. Once finished, inspect the output. Ensure that `cv` Python3 interpreter and `numpy` package were both discovered, with the correct paths. The next step is very time-consuming, and it would be a waste if you were to compile for the wrong version.
+
+Before we build, we must increase the SWAP size of the Raspberry Pi. This can be accomplished via editing some text files:
+
+```shell
+sudo nano /etc/dphys-swapfile
+```
+
+```shell
+# set size to absolute value, leaving empty (default) then uses computed value
+#   you most likely don't want this, unless you have an special disk situation
+# CONF_SWAPSIZE=100
+CONF_SWAPSIZE=2048
+```
+
+<sub>Swapsize was set from 100MB to 2048MB</sub>
+
+This is a requirement; if this is not completed your Pi will most likely freeze during compilation. Note that having an increased SWAP size burns out your SD card faster (as there are more I/O operations). Remember to change the `CONF_SWAPSIZE` back down to `100` (MB).
+
+To put the swap changes into effect, restart the `dphys-swap` service:
+
+```shell
+sudo /etc/init.d/dphys-swapfile stop
+sudo /etc/init.d/dphys-swapfile start
+```
+
+Finally, after all the teasing, we're here: building OpenCV4. The commmand is simple, 
+
+```shell
+make -j4
+```
+
+Where `-j4` says to use all 4 cores of the Pi. However, this can lead to race conditions, and I've personally had bad luck with it, so you can just enter `make` if you like. 
+
+Either way, this going to take a couple of hours. Check in every so often to make sure the device isn't hanging. Once the process hits 100% and sends you back to the shell, you've officially copiled OpenCV4 for a Raspberry Pi's ARM processor. Pat yourself on the back!
+
+5. Installing OpenCV
+
+To install the binaries, simply enter the following:
+
+```shell
+sudo make install
+sudo ldconfig
+```
+
+(Note: Remember to reset your SWAPSIZE to 100MB and restart the SWAP service)
+
+6. Link OpenCV to Python
+
+OpenCV has been installed, but our Python installation doesn't know about it. We need to link the library into its namespace in `site-packages`. 
+
+```shell
+cd ~/.virtualenvs/cv/lib/python3.7/site-packages/
+ln -s /usr/local/python/cv2/python-3.7/cv2.cpython-37m-arm-linux-gnueabihf.so cv2.so
+cd ~
+```
+
+7. Test your installation
+
+To ensure you've done everything right, give a trial by fire: activate the `cv` environment and attempt to `import cv2`
+
+```shell
+workon cv
+python
+```
+```python
+>>> import cv2
+>>> cv2.__version__
+'4.0.0'
+>>> exit()
+```
+
+You're now running the latest version of Python with the most powerful Computer Vision library publicly available. Go blur some images!
+
+---
+
+This tutorial borrows heavily from [Adrian Rosebrock's Amazing OpenCV + Raspberry Pi Tutorial](https://www.pyimagesearch.com/2018/09/26/install-opencv-4-on-your-raspberry-pi/).
+
+I also used a [pyenv tutorial for a Discord Bot](https://docs.discord.red/en/v3-develop/install_linux_mac.html?highlight=stretch#install-python-pyenv) as a way to install 3.7.
+

@@ -170,7 +170,17 @@ Because we're using `virtualenvwrapper`, none of the correct Python files or lib
 ### If you gain nothing from this tutorial, at least see this
 
 ```shell
-cmake -D CMAKE_BUILD_TYPE=RELEASE     -D CMAKE_INSTALL_PREFIX=/usr/local     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules     -D ENABLE_NEON=ON     -D ENABLE_VFPV3=ON     -D BUILD_TESTS=OFF     -D OPENCV_ENABLE_NONFREE=ON     -D INSTALL_PYTHON_EXAMPLES=OFF     -D BUILD_EXAMPLES=OFF -DPYTHON3_EXECUTABLE=/home/pi/.virtualenvs/cv/bin/python -DPYTHON3_INCLUDE_DIR=/home/pi/.virtualenvs/cv/include/python3.7m -DPYTHON3_LIBRARY=/home/pi/.pyenv/versions/3.7.2/lib/libpython3.so -D BUILD_opencv_python3=yes ..
+cmake -D CMAKE_BUILD_TYPE=RELEASE     -D CMAKE_INSTALL_PREFIX=/usr/local     -D 
+
+OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules     -D ENABLE_NEON=ON     -D ENABLE_VFPV3=ON     -D 
+
+BUILD_TESTS=OFF     -D OPENCV_ENABLE_NONFREE=ON     -D INSTALL_PYTHON_EXAMPLES=OFF     -D BUILD_EXAMPLES=OFF
+
+-DPYTHON3_EXECUTABLE=/home/pi/.virtualenvs/cv/bin/python -
+
+DPYTHON3_INCLUDE_DIR=/home/pi/.virtualenvs/cv/include/python3.7m -
+
+DPYTHON3_LIBRARY=/home/pi/.pyenv/versions/3.7.2/lib/libpython3.so -D BUILD_opencv_python3=yes ..
 ```
 
 This will take a few minutes to complete. Once finished, inspect the output. Ensure that `cv` Python3 interpreter and `numpy` package were both discovered, with the correct paths. The next step is very time-consuming, and it would be a waste if you were to compile for the wrong version.

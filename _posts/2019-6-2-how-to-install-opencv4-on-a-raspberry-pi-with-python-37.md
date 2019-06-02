@@ -50,7 +50,7 @@ pyenv global 3.7.2
 Ensure this works by running python --version; you should get "Python 3.7.2" as output.
 ```
 
-3. Installing OpenCV4
+3. Getting OpenCV
 
 This is where the fun begins. Start by updating your system packages:
 
@@ -129,3 +129,44 @@ In order to put these changes into effect, source the profile:
 source ~/.profile
 ```
 
+With `virtualenvwrapper` in your environment, it's finally time to make the environment.
+
+```shell
+mkvirtualenv cv -p python3
+```
+
+This creates a Python 3.7 environment called `cv`. Verify `cv` works with:
+
+```shell
+workon cv
+```
+
+If this worked correctly, the shell prompt should be prefixed with a `(cv)`.
+
+There's only 1 Python requirement for OpenCV, `numpy`:
+
+```shell
+pip install numpy
+```
+
+We now have everything we need to build OpenCV from source.
+
+4. Building OpenCV
+
+Now for the tense part. We're going to build `opencv` from source. 
+
+Change directory to `opencv` and make a `build` directory:
+
+```shell
+cd ~/opencv`
+mkdir build
+cd build
+```
+
+Because we're using `virtualenvwrapper`, none of the correct Python files or libraries are in the PATH. Therefore, we're going to have to hold `cmake`'s hand for each and every Python resource. 
+
+### If you gain nothing from this tutorial, at least see this
+
+```shell
+cmake -D CMAKE_BUILD_TYPE=RELEASE     -D CMAKE_INSTALL_PREFIX=/usr/local     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules     -D ENABLE_NEON=ON     -D ENABLE_VFPV3=ON     -D BUILD_TESTS=OFF     -D OPENCV_ENABLE_NONFREE=ON     -D INSTALL_PYTHON_EXAMPLES=OFF     -D BUILD_EXAMPLES=OFF -DPYTHON3_EXECUTABLE=/home/pi/.virtualenvs/cv/bin/python -DPYTHON3_INCLUDE_DIR=/home/pi/.virtualenvs/cv/include/python3.7m -DPYTHON3_LIBRARY=/home/pi/.pyenv/versions/3.7.2/lib/libpython3.so -D BUILD_opencv_python3=yes ..
+```

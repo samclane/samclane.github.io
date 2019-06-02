@@ -247,7 +247,8 @@ You're now running the latest version of Python with the most powerful Computer 
 
 ---
 
-This tutorial borrows heavily from [Adrian Rosebrock's Amazing OpenCV + Raspberry Pi Tutorial](https://www.pyimagesearch.com/2018/09/26/install-opencv-4-on-your-raspberry-pi/).
+This tutorial borrows heavily from [Adrian Rosebrock's Amazing OpenCV + Raspberry Pi Tutorial](https://www.pyimagesearch.com/2018/09/26/install-opencv-4-on-your-raspberry-pi/). He's brilliant and one of the best resources for all Python + OpenCV content.
 
-I also used a [pyenv tutorial for a Discord Bot](https://docs.discord.red/en/v3-develop/install_linux_mac.html?highlight=stretch#install-python-pyenv) as a way to install 3.7.
+I also used a [pyenv tutorial for a Discord Bot](https://docs.discord.red/en/v3-develop/install_linux_mac.html?highlight=stretch#install-python-pyenv) as a way to install Python 3.7 on the RPi.
 
+--- 

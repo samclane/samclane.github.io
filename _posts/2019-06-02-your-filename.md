@@ -2,8 +2,8 @@
 layout: post
 comments: true
 published: false
-title: ''
-subtitle: ''
+title: How to install OpenCV4 on a Raspberry Pi with Python 3.7
+subtitle: If you're version-locked and have nowhere to turn to
 ---
 1. Why?
 

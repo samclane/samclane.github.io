@@ -14,7 +14,7 @@ Please be patient, I'm using a free-tier Heroku account, so it's very slow to in
 
 ### Intro
 
-DiscordSocialGraph is my first original Machine Learning project. Originally, I set out to create a Discord bot that would predict the next user to join the server. However, that revealed a more interesting prospect: who is the most popular person on our server? This is an inversion of the original question: which user has the most "draw" to get users to join the server. 
+DiscordSocialGraph is my first original Machine Learning project. Originally, I set out to create a Discord bot that would predict the next user to join the server voice-chat. However, that revealed a more interesting prospect: who is the most popular person on our server? Another way to ask this would be: which user has the most "draw" to get users to join the server?
 
 I started by creating an [addon](https://github.com/samclane/Snake-Cogs/blob/master/member_logger/member_logger.py) to the existing Discord Bot framework that I use ([RedBot](https://github.com/Cog-Creators/Red-DiscordBot)). I wanted to collect as little information as possible (to start simple), so all this module does is log 2 things:
 
@@ -23,7 +23,7 @@ I started by creating an [addon](https://github.com/samclane/Snake-Cogs/blob/mas
 
 2. When a user mentions another using `@`
 
-Here's what that file looks like:
+Here's a mockup of what that file looks like:
 ```
 timestamp,member,present
 1539291278,user3,"['user8', 'user1', 'user0', 'user7', 'user4', 'user6']"
@@ -40,15 +40,15 @@ timestamp,member,present
 ```
 <sup>Note: User IDs have been changed to userX for readability</sup>
 
-The bot collects this information and uploads it to a remote PostgresSQL server. 
+The bot collects this information and uploads it to a remote PostgresSQL server requisitioned by Heroku. 
 
-The list of all users with interactions on the server is kept as a one-hot vector. The user is treated as the label. The classifier has to use a probabilistic OneVsAll approach, giving a probability distribution over the entire user-base instead of just the top answer. Using this method across the entire userbase generates a distribution of the one-way probability of a user interacting with another user. This will generate a __graph__:
+The list of all users with interactions on the server is kept as a one-hot vector. The user is treated as the label. The classifier has to use a probabilistic OneVsAll approach, giving a probability distribution over the entire user-base instead of just the top answer. Using this method across the entire userbase generates a distribution of the one-way probability of a given User X interacting with another User Y. This will generate a __graph__:
 
 ![](https://i.imgur.com/tVC6XqZ.png)
 
 <sup>Note: This graph uses the [Fruchterman Reingold layout algorithm](https://github.com/gephi/gephi/wiki/Fruchterman-Reingold) which tries to display the Graph in a spatially meaningful way. Unfortunately that doesn't always work.</sup>
 
-The "popularity" or "draw" of the user is the sum of the weights of all the in-degree weights. Currently, this correlates pretty heavily with the number of instances that user appears in the dataset, but not exactly, meaning that some special relationships are being discovered. For example, it's noticed that `watersnake_test`, my test account, exclusively when I'm already in the server (I only use it when I need to simulate another user besides myself). However, the algorithm can sometimes overfit, drawing strong bonds between my test-account and other accounts I'm actually friends with. It's interesting to try and see the model try and discover who's friends with who. 
+The "popularity" or "draw" of the user is the sum of the weights of all the in-degree weights. Currently, this correlates pretty heavily with the number of instances that user appears in the dataset, but not exactly, meaning that some special relationships are being discovered. For example, it's noticed that `watersnake_test`, my test account, is almost exclusively joining when I'm already in the server (I only use it when I need to simulate another user besides myself). However, the algorithm can sometimes overfit, drawing strong bonds between my test-account and other accounts I'm actually friends with. It's interesting to try and see the model try and discover who's friends with who. 
 
 Three different models were used in the development of this project:
 
@@ -56,15 +56,15 @@ Three different models were used in the development of this project:
 2. Support Vector Machine (`sklearn.svm.SVC`)
 3. Multilayer Perceptron (`sklearn.neural_network.MLPClassifier`)
 
-Currently, model #3, the MLP, gives the most accurate results. The accuracy of the model is quantified by the area under the Receiver Operating Characteristic curve. 
+Currently, model #3, the `MLPClassifier`, gives the most accurate results. The accuracy of the model is quantified by the area under the Receiver Operating Characteristic curve. 
 
 ![](https://i.imgur.com/eibcGPe.png)
 
-Basically, it describes the correct guesses (True Positive) against the bad guesses (false positive rate) as the threshold for classification is narrowed. 
+Basically, it describes the correct guesses (True Positive rate) against the wrong guesses (False Positive Rate) as the threshold for classification is narrowed. 
 
 ### The Webapp
 
-Since this application uses information collected from other people, it was suggested to put it online for all to see. The app is hosted on a free Heroku account, with a Hobby Dyno. The heavy ML lifting is done with a RedisQueue background job. The model is retrained from scratch each time it's restarted, as it doesn't take *that* long and gives the most recent, accurate result. 
+Since this application uses information collected from other people, it was suggested to put it online for all to see. The app is hosted on a free Heroku account, with a Hobby Dyno. The heavy ML lifting is done with a RedisQueue background job, started as soon as the first HTTP request comes through. It then displays a loading message while the webapp boots up. The model is retrained from scratch each time it's restarted, as it doesn't take *that* long and gives the most recent, accurate result as obtained from the database.
 
 ### Results
 

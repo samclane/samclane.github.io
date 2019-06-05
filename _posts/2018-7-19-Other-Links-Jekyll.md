@@ -6,7 +6,7 @@ comments: true
 published: true
 ---
 
-Since I've been getting >0 traffic to my github-pages blog via Reddit and LinkedIn, I thought it would be a good idea to start
+Since I've been getting _some_ traffic to my github-pages blog via Reddit and LinkedIn, I thought it would be a good idea to start
 looking at the Google Analytics page. I didn't really know why I was signing up for Analytics when I first started this
 blog, but I guess I thought it was cool to be tied in to such a comprehensive metrics system. However, using the system
 in a somewhat-serious fashion now, I was exposed to the concept of "bounce rate", which gave a name to a phenomenon I
@@ -118,7 +118,7 @@ and should be truncated somehow.
 
 This is a great first step in getting more users to explore your site. If you don't give them the immediate opportunity
 to click onto something new, you're putting it on faith that they're going to first navigate back to your index page,
-and second, from there find something they like. In reality, they're probably going to copy whatever code they need and
+and from there find something they like. In reality, they're probably going to copy whatever code they need and
 move on. But at least give them the chance to see something else they might, maybe, somehow care about. Otherwise,
 what's the point of keeping old blog posts in the first place? You might as well delete them after a few months to save
 repo space...

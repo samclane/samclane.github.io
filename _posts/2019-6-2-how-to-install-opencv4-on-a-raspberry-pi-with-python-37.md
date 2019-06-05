@@ -7,7 +7,9 @@ subtitle: If you're version-locked and have nowhere to turn to
 ---
 # Why?
 
-I'm currently working on a project that needs Python 3.7 to function. To the chagrin of most developers, the Raspberry Pi only natively supports Python 2.7 and 3.5, so we're going to have to figure out how to get that on there first.
+I'm currently working on a project that needs Python 3.7 to function. To the chagrin of most developers, the Raspberry Pi only natively supports Python 2.7 and 3.5. But, many projects, including my game Discordia, need Python 3.7. I want to host a Discordia server on my Pi, but how am I going to even try if there's no Python 3.7?
+
+Lets' start there; by installing Python 3.7.
 
 ## Requirements
 * Raspberry Pi 3B or 3B+
@@ -124,7 +126,7 @@ export VIRTUALENVWRAPPER_PYTHON=$HOME/.pyenv/shims/python3
 source /usr/local/bin/virtualenvwrapper.sh
 ```
 
-It's **vital** that `VIRTUALENVWRAPPER_PYTHON` is set to the intepreter in `~/.pyenv`, as this is our Python 3.7 install. 
+It's **vital** that `VIRTUALENVWRAPPER_PYTHON` is set to the interpreter in `~/.pyenv`, as this is our Python 3.7 install. 
 
 In order to put these changes into effect, source the profile:
 

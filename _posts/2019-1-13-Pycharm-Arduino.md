@@ -6,7 +6,7 @@ comments: true
 published: true
 ---
 
-This will be a simple tutorial post, showing how I got my IDE setup to be a suitable replacement for the default Arduino IDE. If you're working on a project where your Python code will be interacting with an Arduino, you may want the Arduino sketch Built + Uploaded before your main code is ran. You will also probably want to change your Arduino code without having to open another editor/IDE. This tutorial will cover all these concerns. 
+This will be a simple tutorial post, showing how I got my IDE setup to be a suitable replacement for the default Arduino IDE. If you're working on a project where your Python code will be interacting with an Arduino, you may want the Arduino sketch Built + Uploaded before you run your main code. You will also probably want to change your Arduino code without having to open another editor/IDE. This tutorial will cover all these concerns. 
 
 We will be looking at my [DesktopBuddy](https://github.com/samclane/DesktopBuddy) project as an example, as it uses `PySerial` to communicate with an Arduino. Here's the project directory structure:
 
@@ -27,6 +27,8 @@ We will be looking at my [DesktopBuddy](https://github.com/samclane/DesktopBuddy
   tray_icon.ico
 ```
 
+### Syntax Highlighting
+
 The first change we want to make is to *enable syntax highlighting for `.ino` files.* This can be accomplished through the "File Types" menu, found in `File->Settings->Editor->File Types`. Under "Recognized File Types", scroll down to "C/C++" and add "*.ino" to the list. 
 
 ![file types](../images/pycharm-arduino/file-types.png)
@@ -35,15 +37,17 @@ If you've done this correctly, then your `.h` and `.ino` files should have C-sty
 
 ![highlight](../images/pycharm-arduino/highlighted.png)
 
-Now for the interesting part. We need to register an "External Tool" with PyCharm that calls the Arduino IDE's Build and Upload function. "External Tools" allow PyCharm to call other command-line functions before running the main script. We can add one by editing our current PyCharm "Configuration". In "DesktopBuddy"'s case, the config is named "main". Clicking the dropdown and selection "Edit Configuration" brings us to the following screen:
+### Arduino Toolchain
+
+Now for the interesting part. We need to register an "External Tool" with PyCharm that calls the Arduino IDE's Build and Upload function. Adding "External Tools" allow PyCharm to call other command-line functions before running the main script. We can add one by editing our current PyCharm "Configuration". In "DesktopBuddy"'s case, the config is named "main". Clicking the dropdown and selection "Edit Configuration" brings us to the following screen:
 
 ![edit config](../images/pycharm-arduino/external_tool_location.png)
 
-Click the small "+" to add a tool. Click the "+" in the next window that pops up to add a new tool. You should see a menu similar to this one (with fewer fields filled in).
+Click the small "+" to open the "Add a Tool" dialog. Click the "+" in the next window that pops up to add a new tool. You should see a menu similar to this one (with fewer fields filled in).
 
 ![tool](../images/pycharm-arduino/edit_tool_config.png)
 
-Give it a name (I went with the generic "Arduino") and a description. For the "Program:" field, look for your Arduino installation folder. If you're on Windows, the folder should be in "Programs (x86)". There should be an `.exe` in the folder named "arduino_debug.exe". We want to use the `arduino_debug.exe` version, as it has more command line option support than the standard `arduino.exe`. For the parameters, we want to pass the main `.ino` file of our project (`--upload .\Arduino\MatrixBuddy\MatrixBuddy.ino`). We also change the working directory to that of the main project (not necessarily the Arduino project sub-directory). 
+Give it a name (I went with the generic "Arduino") and a description. For the "Program:" field, look for your Arduino installation folder. If you're on Windows, the folder should be in `C:\Program Files (x86)\Arduino\`. There should be an `.exe` in the folder named `arduino_debug.exe`. We want to use the `arduino_debug.exe` version, as it has more command line option support than the standard `arduino.exe`. For the parameters, pass the main `.ino` file of our project (`--upload .\Arduino\MatrixBuddy\MatrixBuddy.ino`). We also change the working directory to that of the main project (not necessarily the Arduino project sub-directory). 
 
 To test the new tool config, go to any file, then press `Right Click->External Tools->[Your tool name]`. If things work correctly, you should see console output something like this:
 
@@ -73,7 +77,7 @@ Global variables use 335 bytes (16%) of dynamic memory, leaving 1713 bytes for l
 Process finished with exit code 0
 ```
 
-If you're having problems connecting with your Arduino, open your default Arduino IDE and ensure that all connection settings are correctly configured, including which Serial Port is being used. Also make sure that the Serial connection isn't being used by another process. Your Python code could be running in the background and hogging the Serial port. 
+If you're having problems connecting with your Arduino, open your default Arduino IDE and ensure that all connection settings are correctly configured, including which Serial Port is being used. Also make sure that the Serial connection isn't being used by another process. Your Python code could be running in the background and hogging the Serial port, not allowing any other applications to use it. 
  
 Another good idea would be to make a copy of the "main" configuration and deleting the call to the "Arduino" tool. That way, you can choose to run your code with/without uploading to your Arduino first.
 

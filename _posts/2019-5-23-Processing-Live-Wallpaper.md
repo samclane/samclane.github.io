@@ -8,9 +8,9 @@ published: true
 
 ### 1. What is Processing?
 
-Processing is a hybrid language/package/IDE for learning how to code. It's particularly well-suited for a graphics environment, with the main 2 functions being `setup()` and a `draw()` loop. It's very similar to Arduino, and in-fact the IDE is almost exactly the same as Arduino's, and there are many cross-compatibilities between the two. One of the first hardware projects I ever designed was a visual graph for the Digital Input 0 pin of my Arduino. It abstracts away most of the nasty graphics programming elements, like interfacing with lower-level libraries, and allows the developer to focus on the logic of the application, and more importantly, the looks of the end result. This also means that whenever Processing is ported to a new architecture, all the underlying graphics programming has already been accomplished.
+Processing is a hybrid language/package/IDE for learning how to code. It's particularly well-suited for a graphics environment, with the main 2 functions being `setup()` and a `draw()` loop. It's very similar to Arduino; in-fact the IDE is almost exactly the same as Arduino's, and there are many cross-compatibilities between the two. One of the first hardware projects I ever designed was a visual graph for the Digital Input 0 pin of my Arduino. It abstracts away most of the nasty graphics programming elements, like interfacing with lower-level libraries, and allows the developer to focus on the logic of the application, and more importantly, the look of the end result. This also means that whenever Processing is ported to a new environment, all the underlying graphics development has already been accomplished.
 
-This is why I was ecstatic when I found out about [Processing for Android](https://android.processing.org/). It's available as both a desktop extension for Processing (with Android Emulator support), and as an Android app with all the features of hte desktop version (git push/pull, compile to signed apk, live wallpaper, etc).  This has been especially powerful for me, as I've tried several times to pick up Android programming, but was turned off by the UI-driven design (despite my love for GUI development, ironically). 
+This is why I was ecstatic when I found [Processing for Android](https://android.processing.org/). It's available as both a desktop extension for Processing (with Android Emulator support), and as an Android app with all the features of the desktop version (git push/pull, compile to Signed .apk file, live wallpaper export, etc).  This has been especially powerful for me, as I've tried several times to pick up Android programming, but was turned off by the UI-driven design (despite my love for GUI development, ironically). 
 
 When I first installed Processing for Android on my phone (APDE for short), I was pleased to find Conway's Game of Life as a sample. Putting a Game of Life live-wallpaper on my Android was one of the first things I did when I got my first smartphone. It was a simple black-and-white simulation, similar to the vanilla example provided by Processing. 
 
@@ -40,11 +40,14 @@ void setup() {
 }
 ```
 
-The obvious first move would be to add variable cell-sizes, so your poor Samsung Galaxy doesn't get battered with a 2560x1440 sized world. We add `final int CELL_SIZE = 16;` to the top of our file. It could be any size, but 16x16px seems to look good on my display. 
+The obvious first move would be to add variable cell-sizes, so your poor Samsung Galaxy doesn't get hammered with a 2560x1440 sized world. We add `final int CELL_SIZE = 16;` to the top of our file. It could be any size, but 16x16px seems to look good on my display. 
 
 `sx` and `sy`, the width and height of the world respectively, are recalculated by dividing by `CELL_SIZE`
 
 ```java
+final int CELL_SIZE = 16;
+...
+
 void setup() {
   ...
   sx = int(displayWidth/CELL_SIZE);
@@ -53,7 +56,7 @@ void setup() {
 }
 ```
 
-One can convert from grid to pixel coordinates by multiplying by `CELL_SIZE`, and pixel to grid by dividing. Having a helper function makes the code a lot cleaner.
+One can convert from grid to pixel coordinates by multiplying by `CELL_SIZE`, and vice-versa. Having a helper function makes the code a lot cleaner.
 
 ```java
 void setCell(int x, int y) {
@@ -82,13 +85,16 @@ But, the whole black-and-white aesthetic isn't really working for me; let's see 
 
 ### 4. Adding Fade and Color
 
-The time-step evolution of the world looks really jerky, no matter how you mess with the framerate. Having cells fade away could give some extra dynamics to the display, as well as let the "player" know what just happened. 
+The time-step evolution of the world looks really jerky, no matter how you mess with the framerate. Having cells fade away could give some extra dynamics to the display, as well as let the "player" know what just happened in a quickly-changing simulation.
 
 To implement this, we're simply going to be using the `alpha` channel of the color, or it's transparency. We need to keep track of the alpha of each cell so it can be drawn correctly each time `draw()` is called.  
 
 We start by creating a 2D array `int[][] alpha_map;`. We also create a `final int FADE_RATE` to subtract from each dying cell. I use 36. In `setup()`, we initialize values to 255 (full visibility) when we randomly turn on cells.
 
 ```java
+final int FADE_RATE = 36;
+int[][] alpha_map;
+
 void setup() {
   for (int i = 0; i < sx * sy * density; i++) { 
     int x = (int)random(sx);
@@ -104,7 +110,7 @@ Anywhere where we turn on a cell in the `draw()` function, we must also reset th
 ![](../images/game-of-life/fade.png)
 <sup>Grey cells are considered "dead" by the simulation and are being animated out of existence.</sup>
 
-However, this is an Android live wallpaper. So we need a gaudy amount of RGB pallets moving around all over the place. Let's try coloring the cells based on their location in the picture.
+However, this is an Android live wallpaper. So we need a gaudy amount of RGB colors moving around all over the place. Let's try coloring the cells based on their location in the picture.
 
 Again, we create and initialize an array, this time of type `color`, and a constant `COLOR_SPEED` determining how fast they change. We also set the `colorMode` from `RGB` to `HSB`, which stands for Hue, Saturation, and Brightness, so we can directly manipulate the hue more effectively. 
 
@@ -120,7 +126,7 @@ void setup() {
 }
 ```
 
-Then, in the `draw()` function, the `color_map` is updated for each cell. Here, I'm using a circular function to calculate the hue by adding the `sin()` and `cos()` of the coordinates. 
+Then, in the `draw()` function, the `color_map` is updated for each cell. Here, I'm using a circular function to calculate the hue by adding the `sin()` and `cos()` of the coordinates. We add 127 (half of 255) so the result is non-negative.
 ```java
 void draw() {
   for (int x = 0; x < sx; x=x+1) {
@@ -135,7 +141,7 @@ void draw() {
 
 ### 5. Finishing Touches
 
-Finally, we should give a little interactivity to this Wallpaper. After all, eventually the simulation will converge and stop producing any dynamic results. Touches/Clicks should bring the corresponding cell to life in the next frame. With the `setCell` function, this becomes trivial to make cross-platform:
+Finally, we should give a little interactivity to this Wallpaper. After all, eventually the simulation will reach homeostasis and stop producing any dynamic results. Touches/Clicks should bring the corresponding cell to life in the next frame. With the `setCell` function, this becomes trivial to make cross-platform:
 
 ```java
 // Bring the current cell to life

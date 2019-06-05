@@ -6,10 +6,10 @@ comments: true
 
 First of all, I would like to say that the code in this post was inspired by Adrian Biagioli's article on Perlin Noise,
 which can be found [here](http://flafla2.github.io/2014/08/09/perlinnoise.html). That being said, this really isn't going
-to be a primer on Perlin Noise, and is mostly going to focus on its implementation in Python. First, a recap of the 
-converted C++ code from Adrian's article.
+to be a primer on Perlin Noise itself, rather it's going to focus on its implementation in Python. First, a recap of the 
+converted C++ code from Adrian's article:
 
-We start by creating the permutation array which later gives us our 'random' gradients.
+We start by creating the permutation array which later gives us our 'random' gradients. These values are taken directly from Biagioli's article so we can get similar results, but you can easily randomly generate the gradients (range [0, 255]) for a different approach. We extend `p` by `p` so the indices seem to "wrap around". Finally we define a `namedtuple` class `Vector`, making xyz-coordinates much easier to handle.
 
 ```python
 from collections import namedtuple
@@ -34,11 +34,6 @@ Vector = namedtuple('Vector', 'x y z')
 
 ```
 
-Luckily, instead of having to manually double the array, we can just use `list.extend(list)` to do that in one line. 
-
-We've also taken the liberty of creating a `Vector` named-tuple class, which makes keeping track of `x y z` that much 
-easier. 
-
 We're now ready to begin implementing the actual Perlin algorithm.
 
 ```python
@@ -52,12 +47,11 @@ def perlin(x, y, z):
     ...
 ```
 
-Note, I kept the function signatures the same as the C++ code, instead of converting them to take a single `Vector`, so 
-they could be used similarly to how they are in the tutorial. However, once we've entered the function, anything is fair 
-game. So we convert them into a `Vector`, then use `math.modf` to split the values into `int` and `float` parts. 
+I kept the function signatures the same as the C++ code (taking 3 `int`s instead of a `Vector`), instead of converting them to take a single `Vector`, so they could be used similarly to how they are in Biagioli's tutorial. However, once we've entered the function, anything is fair 
+game. So we convert them into a `Vector` class, then use `math.modf` to split the values into `int` and `float` parts. 
 
 The `fade` function is trivial to implement, as it simply returns 6t<sup>5</sup>-15t<sup>4</sup>+10t<sup>3</sup>, and 
-luckily, we can simply map the function over the `float_args`.
+luckily, we can simply `map` the function over the `float_args` to get all results at once.
 
 ```python
 def fade(t):
@@ -97,7 +91,7 @@ def perlin(x, y, z):
 ```
 
 The `grad` function's goal is to generate the random vectors for the unit cube currently being processed. The article 
-presents two ways of doing this.
+presents two ways of doing this. 
 
 ```python
 def grad_slow(hash_list, x, y, z):
@@ -176,7 +170,7 @@ And we are ready to put it all together at the end of the `perlin` function.
 
 Interpolating from gradients around the unit cube is what gives it it's apparent "coherency".
 
-In order to get a nice output, we try outputting a 2D map. 
+In order to get a nice output, we try outputting a 2D map image. We should hopefully see some grey blobs
 
 ```python
 import numpy as np
@@ -229,14 +223,14 @@ def octave_perlin(x, y, z, octaves, persistence):
     return total / maxValue
 ```
 
-Using the parameters `octaves = 5` and `persistence = 0.75`, I got this image:
+Using the parameters `octaves = 5` and `persistence = 0.75`, I produced this image:
 
 ![octave noise](../images/perlin-noise/noise.bmp)
 
-This marks the end of the "official" Perlin Tutorial. However, I wasn't satisfied, and I wanted to add color to the nosie (so it would
-look like a heatmap). 
+This marks the end of the "official" Perlin Tutorial. However, I wasn't satisfied, and I wanted to add color to the noise (so it would
+look like a heat-map). 
 
-In order to do this, we first need to find a way to map [0.0-1.0] to a color gradient. Luckily, I already had a `HuetoRGB`
+In order to do this, I first need to find a way to map [0.0-1.0] to a color gradient. Luckily, I already had a `HuetoRGB`
 function around that would convert an angle in degrees [0-360] to an RGB color [0-255][x3]
 
 ```python

@@ -8,16 +8,16 @@ comments: true
 When I was developing [LIFX-Control-Panel](https://github.com/samclane/LIFX-Control-Panel), I was constantly running into
 the problem of keeping my version numbers straight. Namely, I was keeping my version number in two separate places; one 
 in the top of my `settings.py` file, and the other in the `default.ini` config file. The idea was, the binary would compare
-its version string to `config.ini`'s on startup, and if the binary's version was greater than the existing config, it 
-overwrite it with the newer `default.ini`. A brilliant, game-changing idea on it's own, but the problem was, I had to 
+its version string to `config.ini`s on startup, and if the binaries version was greater than the existing config, it 
+overwrite it with the newer `default.ini`. A brilliant, game-changing idea on it's own (if I do say so myself), but the problem was, I had to 
 manually set the values every time I upped the version number or rebuilt the binaries. Naturally, I forgot to keep the
 version numbers in lock-step, and much confusion ensued. How could I keep these constant values in some singular place,
-where I only have to change them once and it will propagate through the rest of my code. 
+where I only have to change them once and it will propagate through the rest of my code? 
 
 
 The best way I've come up with involves a `_constants.py` file, and some changes to the beginning of my `build.spec` file.
-The nice thing about spec files is that they are executed like Python scripts, meaning you can embed Python statements into the 
-file and have them execute before the build starts. Without further ado, here's my spec file:
+The nice thing about `.spec` files is that they are executed like Python scripts, meaning you can embed Python statements into the 
+file and have them execute before the build starts. Here's my spec file for LIFX-Control-Panel:
 
 ```python
 # -*- mode: python -*-
@@ -51,8 +51,7 @@ with open('default.ini', 'w') as f:
 EDIT: [I've uploaded my full spec file as a gist. Here you can see how the whole file goes together.](https://gist.github.com/samclane/cbf44116a3c1e1a9c5e11c5e932360d3) 
 
 So what's going on here? Well, I have 4 variables that I want to keep updated. The first 3 are self explanatory. `is_debug`
-enables certain debug statements in the code, and turns on the console in the background. The first block simply overwrites the
-`constants.py` file with the new values. The second block is a little more advanced. It reads in the existing `default.ini` file,
+enables certain debug statements in the code, and turns on the Python stdout console in the background. The first `with` context block simply overwrites the`constants.py` file with the new values. The second block is a little more advanced. It reads in the existing `default.ini` file,
 and changes the corresponding lines, then writes the value back. This keeps existing values unchanged. 
 
 Afterwards, `_constants.py` looks like this:
@@ -82,4 +81,4 @@ author = Sawyer McLane
 builddate = 2018-06-06T15:40:54.587551
 ```
 
-And that's all there really is to it. Anywhere you want to use your constants, just `import _constants` and fire away!
+And that's all there really is to it. Anywhere you want to use your constants, just `import _constants` and the variables are in your namespace. So fire away!

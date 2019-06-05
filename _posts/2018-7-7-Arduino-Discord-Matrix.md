@@ -25,16 +25,16 @@ still somehow finds itself at buried below a couple of browser windows within no
 I'm A) in the server and B) muted/deafened. This can be additionally challenging while playing a game that can't be 
 paused or alt-tabbed to check on Discord. My first attempt at tackling the problem was to try and [write my own custom
 Discord overlay](https://github.com/samclane/MinimalDiscordOverlay). Discord has an official overlay, but it only works 
-in games, and only certain ones at that. Plus, it's really bloated, showing everyone in your voice server and taking up
+inside running games, and only certain ones at that. Plus, it's really bloated, displaying everyone in your voice server and taking up
 significant screen real-estate. My idea was to have 2 small squares which would indicate if you were connected (left) 
-and unmuted (right). The major benefits being that it takes up much less screen-space, and that it wasn't tied to games.
+and unmuted (right). The major benefits being that it takes up much less screen-space, and that it wasn't tied to any game.
 For example, in the screenshot below, the squares are on top of a PyCharm window. 
 
 ![](https://camo.githubusercontent.com/6eb4e1829961bdb617d1d5899ef9ceb6adbba4de/68747470733a2f2f692e696d6775722e636f6d2f6f4e53574a62332e706e67)
 
-The major problem I encountered was that there's really no way to guarantee a GUI window (Tkinter in this case) stays on 
+The major problem I encountered was there's really no way to guarantee a GUI window (Tkinter in this case) stays on 
 top of all other windows. A lot of games work really hard to be the top window, and even if we're constantly calling 
-some Tk function to put our window on top, the game will win in the end. Also, several games suffered large framerate 
+some Tk function to put our window on top, **the game will win in the end**. Also, several games suffered large framerate 
 drops due to the overlay, with the working hypothesis being the aforementioned struggle for the top window. It was a 
 good exercise, but ultimately not the solution I was hoping for. 
 
@@ -63,11 +63,11 @@ hypothetical "stripped-down" 3rd monitor. All I had to do was put the pieces tog
   - led_matrix.py
 
 [In my last article](http://samclane.github.io/Python-Arduino-PyFirmata/), I wrote an explanation of the LED-Matrix 
-"driver" written in Python with PyFirmata. Take that code and put it in a file called `led_matrix.py` and save it for 
+"driver" written in Python with PyFirmata. Take that code and put it in a file called `led_matrix.py`. Save it for 
 later.
 
-Now, on to the meat of the program. How do we actually figure out our Discord connection status? Luckily, there's a 
-Discord module for python, aptly named `discord`. Go ahead and `pip install discord`, as well as `pyfirmata` if you
+Now, on to the important part of the program. How do we actually figure out our Discord connection status? Luckily, there's a 
+Discord module for Python, aptly named `discord`. Go ahead and `pip install discord`, as well as `pyfirmata` if you
 haven't already. 
 
 ```python
@@ -119,10 +119,8 @@ MUTED = DEAFENED = [[0, 0, 0, 0, 0, 0, 0, 0],
 
 We start by doing all our imports, then by defining a couple constants. `REFRESH_RATE` is how often the program will 
 check Discord for voice-status updates. `ZEROS` is an 8x8 matrix of 0s, which is useful for clearing the display. 
-`DISCONNECTED`, `CONNECTED` and `MUTED`/`DEAFENED` are all "icon" matrices that we will pass to the `LedMatrix` object so it 
-can be drawn to the display. Refer to the [legend](https://github.com/samclane/DiscordMatrix#current-legend) if you want to see what they will look like.
 
-We're going to quickly extend the base `LedMatrix` class so it has internal memory of it's currently drawn matrix. This 
+We're going to quickly extend the base `LedMatrix` class so it has internal memory of its currently drawn matrix. This 
 will aid us in reducing how often we have to communicate with the Arduino, which is a relatively lengthy operation. 
 
 ```python
@@ -176,11 +174,11 @@ through a config file, which we will now read from.
 ```
 
 It might be a little safer to `pickle` the password instead of adding it to the config file, but I like to live 
-dangerously. Just know that your password should go in `config.ini` and not `default.ini`. And don't ever share a 
-`config.ini` with anyone if it has your password in it. And **_especially_** don't commit your `config.ini` to a public 
+dangerously. Just know that your token should go in `config.ini` and not `default.ini`. And don't ever share a 
+`config.ini` with anyone if it has your token in it. And **_especially_** don't commit your `config.ini` to a public 
 repository<sup><a href="#2">2</a></sup>.
 
-The other benefit of using a custom `config.ini` is that you can safe custom Arduino pin-outs for the MAX, as we'll see 
+The other benefit of using a custom `config.ini` is that you can save custom Arduino pin-outs for the MAX, as we'll see 
 below. This code should look a lot like the `__main__` function from the original LedMatrix article. Also, remember we're
 using our `ExtendedMatrix` class, instead of the "vanilla" `LedMatrix`.
 
@@ -230,7 +228,7 @@ provided username and password. This also happens in a background thread (`t_cli
 ```
 
 And finally, here is `update_status`, the core of the `DiscordListener`. The reason we had to provide our own login info
-is so the listener can know which servers to check. As far as I've been able to figure, this is the only way to check 
+is _so the listener can know which servers to check_. As far as I've been able to figure, this is the only way to check 
 one's voice connection status. If we're able to find one instance of "non-disconnected behavior" (i.e. `CONNECTED` or 
 `MUTED`), then we immediately `break` and update the matrix to the new icon matrix.  
 
@@ -253,8 +251,7 @@ one's voice connection status. If we're able to find one instance of "non-discon
         self.sched.enter(REFRESH_RATE, 1, self.update_status)
 ```
 
-Note that we check `if self.matrix != state` before writing the new icon. This prevents us from doing unnecessary serial
-transactions that can tie up the CPU.  
+Note that we check `if self.matrix != state` before writing the new icon. This prevents us from doing unnecessary serial-transactions that can tie up the CPU and I/O bandwidth.
 
 Also, here's the `exit` function, which simply displays a goodbye message, clears the display (really helpful for knowing
 when the program is running or not) and closes all the daemon threads with `sys.exit()`. 

@@ -8,24 +8,23 @@ comments: true
 I've had an Arduino for almost 8 years now; I got it as a birthday present from my Dad. And boy, I've gotten a lot of 
 use out of the thing. From a makeshift oscilloscope to a 
 [quick-and-dirty ESP8266 programmer](https://www.hackster.io/ROBINTHOMAS/programming-esp8266-esp-01-with-arduino-011389)
-, the Arduino has served me well. However, as I learned more tools and languages, I began to find the base Arduino 
+, the Arduino has served me well. However, as I've learned more tools and languages, I began to find the base Arduino 
 Sketch language (henceforth referred to as "Sketch(es)", with a capitol 'S') kinda...clunky. Arduino should be all about banging out **quick** prototypes 
 that ***work***. [Python is basically pseudocode already](https://i.redd.it/gip50r3305vz.jpg), so why waste time thinking 
-about all those convoluted bytes and types and curly-braces, when you can start digging into why the project you've been planning 
-about all week in the shower doesn't work on a fundamental, logical level. You know, really *get in the zone*.
+about all those convoluted bytes and types and curly-braces, when you can start digging into the deeply troubling bugs in your project-design, rather than mess with the language. You know, really *get in the zone*.
 
 I went to school for Computer Engineering and have worked 5 months for an embedded-systems design shop, so I have a 
-a decent amount of experience with C (of which I consider Sketch to be a derivative). It's not fast to develop in. There's 
+a decent amount of experience with C (of which I consider Arduino to be a derivative). It's not the fastest to develop in. There's 
 a lot of boilerplate code one has to write, usually tightly coupled to whatever hardware or framework you're working with.
 On top of that, C isn't object-oriented, and trying to import those design patterns usually ends up feeling like writing 
 plain Javascript<sup><a href="#1">1</a></sup>. That is to say, not good for one's self esteem.
 
 But, I should stop railing against C before I lose all credibility and you stop reading the article. In short; I 
 don't like leaving my comfort zone and C makes my brain hurt. Besides, the main star of the show here isn't Python; it's 
-the protocol that we're going to use to get Python controlling the Arduino: [Firmata](http://firmata.org/wiki/Main_Page).
+the protocol that we're going to use to get Python controlling the Arduino: [**Firmata**](http://firmata.org/wiki/Main_Page).
 Now, Firmata isn't Python specific; in fact that's the whole point. It provides a common interface for many different 
 languages to control an Arduino device at around the same speed as a regular Sketch would. It does this by placing the 
-Arduino into "slave" mode, and converting it's API calls into commands to send to the Arduino to be immediately executed. 
+Arduino into "slave" mode, and converting its API-calls into commands to send to the Arduino to be immediately executed. 
 This is an order of magnitude faster than using `pyserial` to send info to an Arduino running it's own Sketch, as the 
 serial port resets after every message, incurring significant overhead. To show-off a project that requires a fast write 
 speed, let's write a driver for a 8x8 MAX7219 LED Matrix. 
@@ -39,6 +38,8 @@ upload to our Arduino like any other Sketch file. We 'll also need to install Py
 
 Now we're going to look at the code we'll be adapting: a driver for the MAX7219 LED Matrix. [We'll be using code directly 
 from the Arduino website](http://playground.arduino.cc/LEDMatrix/Max7219). 
+
+First let's start with the sketch:
 
 ```cpp
 int dataIn = 2;
@@ -148,7 +149,7 @@ void setup () {
 }  
 ```
 
-It's not really important that you understand what the code is doing right away. A lot of embedded systems is passing magic numbers 
+It's not really important that you understand what exactly the code is doing right away. A lot of embedded systems is passing magic numbers 
 between devices to initialize them. The key takeaway is the `maxOne`, `maxAll`, and `maxSingle` functions, which handle writing to the 
 actual device. We want to wrap this all up in a reusable `LedMatrix` class that we can integrate into other projects. So
 without further ado, let's get into the Python code.
@@ -189,7 +190,7 @@ we're going to need `time.sleep` to emulate Sketch's `delay` function. `HIGH` an
 the code more self-explanatory, and closer to the original Sketch. 
 
 Now, one of the nice things about Python is it's object-oriented design features. In order to encapsulate the functionality
-of the LEDMatrix, we're going to create an `LedMatrix` class. This lets us reuse the `LedMatrix` object in other projects.
+of the LEDMatrix, we're going to create an `LedMatrix` class. This lets us reuse the `LedMatrix` class in other projects.
 
 ```python
 class LedMatrix:
@@ -208,14 +209,14 @@ class LedMatrix:
 ```
 
 The args we pass are:
-* `board` 
+* `board` - `Arduino`
   * The `pyfirmata` `Arduino` object. We'll use this to communicate with the LedMatrix. We'll show how to instantiate one 
   at the end (since its actually quite simple). We make it private as other objects shouldn't be interfacing with the 
   `Arduino` through the `LedMatrix` object; that just seems backwards.
-* `dataIn`, `load`, `clock`
+* `dataIn`, `load`, `clock` - `int`
   * The 3 pins from the LED-Matrix that are connected to the Arduino. These can be pretty arbitrary, as long as they're
   digital output pins.
-* `maxInUse`
+* `maxInUse` - `int`
   * MAX7219 Matrices can be daisy-chained, and this variable allows the object to reference these daisy-chained systems.
   Defaults to 1, however, as that's the most common case.
   

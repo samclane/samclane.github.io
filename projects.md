@@ -1,7 +1,7 @@
 ---
 layout: gallery
-title: Portfolio
-permalink: /portfolio/
+title: Projects
+permalink: /projects/
 projects:
     - image_path: https://github.com/samclane/LIFX-Control-Panel/raw/master/res/screenshot.png
       title: LIFX-Control-Panel
@@ -12,7 +12,7 @@ projects:
     - image_path: https://github.com/samclane/Perlin_Noise/raw/master/animation.gif?raw=true
       title: Perlin Noise
       link: https://github.com/samclane/Perlin_Noise
-    - image_path: /images/portfolio/mycroft_logo.png
+    - image_path: /images/projects/mycroft_logo.png
       title: LIFX-Mycroft
       link: https://github.com/samclane/lifx-mycroft
     - image_path: https://github.com/samclane/daylio-analysis/raw/master/res/bokeh_screenshot.png
@@ -21,7 +21,7 @@ projects:
     - image_path: https://camo.githubusercontent.com/e873a644c0ff11d111161a0f044e834841576580/68747470733a2f2f692e696d6775722e636f6d2f4e455346324b4d2e676966
       title: DesktopBuddy
       link: https://github.com/samclane/DesktopBuddy
-    - image_path: /images/portfolio/social-graph.png
+    - image_path: /images/projects/social-graph.png
       title: Discord Social Graph
       link: https://github.com/samclane/SocialGraphWebapp
     - image_path: https://github.com/samclane/DiscordMud/raw/master/screenshots/4.png
@@ -36,7 +36,7 @@ projects:
     - image_path: https://camo.githubusercontent.com/3abf96f19f64139cff2c1feee8f954e8d26abcf9/68747470733a2f2f696d672e796f75747562652e636f6d2f76692f585039792d6f4c732d39492f302e6a7067
       title: SoundDisplay
       link: https://github.com/samclane/SoundDisplay
-    - image_path: /images/portfolio/mycroft_logo.png
+    - image_path: /images/projects/mycroft_logo.png
       title: HomeSeer-MyCroft
       link: https://github.com/samclane/homeseer-mycroft
 ---

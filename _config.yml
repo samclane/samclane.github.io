@@ -123,3 +123,5 @@ prose:
           label: "published"
           help: "publish the article on your blog"
           value: false
+
+theme: jekyll-theme-slate

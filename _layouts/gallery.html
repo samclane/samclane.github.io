@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<article class="page">
+    <table class="photo-gallery">
+        {% tablerow project in page.projects cols:4 %}
+            <a href="{{ project.link }}">
+
+                <div class="thumbnail">
+                    <img src="{{ project.image_path }}" alt="{{ project.title}}" class="image portrait"/>
+                    <div class="middle">
+                        <div class="popup">{{ project.title}}</div>
+                    </div>
+                </div>
+
+            </a>
+        {% endtablerow %}
+    </table>
+</article>
+

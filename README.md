@@ -1,5 +1,6 @@
 # samclane.github.io
 #### Sawyer McLane's personal blog & portfolio
+
 [![Build Status](https://travis-ci.com/samclane/samclane.github.io.svg?branch=master)](https://travis-ci.com/samclane/samclane.github.io)
 
 ---

@@ -107,7 +107,7 @@ prose:
         field:
           element: "text"
           label: "title"
-      - name: "subtitle"
+      - name: "description"
         field:
           element: "text"
           value: ""
@@ -131,5 +131,3 @@ social:
     - https://www.linkedin.com/feed/
     - https://github.com/samclane
     - https://stackoverflow.com/users/1486262/watersnake
-
-theme: jekyll-theme-cayman

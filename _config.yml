@@ -1,7 +1,6 @@
 #
 # This file contains configuration flags to customize your site
 #
-
 # Name of your site (displayed in the header)
 name: Sawyer McLane
 
@@ -132,3 +131,5 @@ social:
     - https://www.linkedin.com/feed/
     - https://github.com/samclane
     - https://stackoverflow.com/users/1486262/watersnake
+
+

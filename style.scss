@@ -287,5 +287,8 @@ footer {
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
 @import "svg-icons";
+
+// My Imports
 @import "gallery";
 @import "preview";
+@import "index";

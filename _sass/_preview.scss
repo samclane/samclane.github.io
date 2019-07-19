@@ -8,16 +8,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: $lightGray;
+  border-radius: .5em 1.5em 1em .25em;
 }
 
 .preview {
   font-size: 12px;
-  max-width: 240px;
+  max-width: $maxWidth/3;
   margin-left: 10px;
   margin-right: 10px;
+  margin-bottom: 10px;
 
   h1 {
     font-size: 16px;
+  }
+
+  a.read-more {
+    margin-bottom: 16px;
   }
 }
 

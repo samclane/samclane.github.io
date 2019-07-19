@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Daylio Mood Data Analysis
-subtitle: Visualizing High-Dimensional feature-data with Bokeh
+description: Visualizing High-Dimensional feature-data with Bokeh
 comments: true
 published: true
 ---

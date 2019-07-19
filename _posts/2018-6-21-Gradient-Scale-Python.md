@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Create a Scale widget with a gradient background in Tkinter
-subtitle: Give users a more representative slider display using tkinter Canvas widgets
+description: Give users a more representative slider display using tkinter Canvas widgets
 comments: true
 ---
 

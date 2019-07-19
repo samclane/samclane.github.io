@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using PyFirmata to rewrite an Arduino sketch
-subtitle: Controlling a MAX7219 LED Matrix to use in your projects
+description: Controlling a MAX7219 LED Matrix to use in your projects
 comments: true
 ---
 

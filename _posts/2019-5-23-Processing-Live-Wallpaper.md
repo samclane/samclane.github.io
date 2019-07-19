@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Android Live Wallpapers with Processing for Android
-subtitle: Use a vibrant render of Conway's Game of Life for a wallpaper!
+description: Use a vibrant render of Conway's Game of Life for a wallpaper!
 comments: true
 published: true
 ---

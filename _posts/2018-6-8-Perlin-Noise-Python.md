@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Exploring Perlin Noise in Python
+description: Generating coherent noise for all manner of simulations and games
 comments: true
 ---
 

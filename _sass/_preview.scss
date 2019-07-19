@@ -1,0 +1,26 @@
+.entry img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.previewbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview {
+  font-size: 12px;
+  max-width: 240px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  h1 {
+    font-size: 16px;
+  }
+}
+
+.pagination {
+  border-top: 1px solid $lightGray;
+}

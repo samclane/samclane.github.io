@@ -1,7 +1,7 @@
 ---
 layout: post
 title: nodeMCU ESP82 Tripwire Episode 1
-subtitle: Initial prototype and power supply woes
+description: Initial prototype and power supply woes
 comments: true
 published: true
 ---

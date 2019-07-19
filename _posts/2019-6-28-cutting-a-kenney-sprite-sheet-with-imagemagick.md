@@ -3,7 +3,7 @@ layout: post
 comments: true
 published: true
 title: Cutting a Sprite Sheet with ImageMagick
-subtitle: Save time trimming pixel-by-pixel
+description: Save time trimming pixel-by-pixel
 ---
 ## What is a sprite sheet?
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Create a low-resolution, real-time sound spectrum display
-subtitle: Wow your friends by looking like a less-than-professional sound engineer
+description: Wow your friends by looking like a less-than-professional sound engineer
 comments: true
 published: true
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Discord Social Graph
-subtitle: Machine-Learning woo to terrorize your local Discord Server
+description: Machine-Learning woo to terrorize your local Discord Server
 comments: true
 published: true
 ---

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Adding Keybinds to your Python App
+description: Keyboard shortcuts make your app an attractive and powerful tool to users
 comments: true
 ---
 

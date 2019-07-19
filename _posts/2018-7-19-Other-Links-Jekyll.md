@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Generate links to your other blog posts automatically using Jekyll/Liquid
-subtitle: Lower your bounce rate (I feel dirty saying that)
+description: Lower your bounce rate (I feel dirty saying that)
 comments: true
 published: true
 ---

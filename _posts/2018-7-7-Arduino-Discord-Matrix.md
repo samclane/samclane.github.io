@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Discord Connection Status Monitor using an Arduino and MAX7219
-subtitle: Never worry about leaving your mic open again!
+description: Never worry about leaving your mic open again!
 comments: true
 ---
 

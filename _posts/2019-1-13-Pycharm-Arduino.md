@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Configuring PyCharm as an Arduino IDE
-subtitle: Work on Python and Arduino Sketches without changing windows!
+description: Work on Python and Arduino Sketches without changing windows!
 comments: true
 published: true
 ---

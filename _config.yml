@@ -130,3 +130,6 @@ social:
     - https://www.linkedin.com/feed/
     - https://github.com/samclane
     - https://stackoverflow.com/users/1486262/watersnake
+
+include:
+  - .well-known

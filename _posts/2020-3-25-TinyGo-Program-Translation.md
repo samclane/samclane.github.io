@@ -13,7 +13,7 @@ Anyway I've had some free time on my hands, and I've been learning Go for work. 
 
 Again, here is the sketch in C:
 
-```C
+```cpp
 int dataIn = 2;
 int load = 3;
 int clock = 4;

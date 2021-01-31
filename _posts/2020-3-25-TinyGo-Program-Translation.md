@@ -2,7 +2,7 @@
 layout: post
 comments: true
 published: true
-title: 2020-3-25-TinyGo-Program-Translation.md
+title: TinyGo Program Translation
 description: 'Translate a Arduino C-Sketch (MAX7219 Driver) into Golang with TinyGO'
 ---
 ## MAX7219 Driver in TinyGo

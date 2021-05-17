@@ -8,7 +8,7 @@ comments: true
 If you've ever used any image/video editing software, you've likely come across a color-slider looking something like 
 this:
 
-![scale](../images/color-scale/scale.png)
+![scale](../../samclane-dev/flask_app/static/images/color-scale/scale.png)
 
 Sure, the user could just move a blank slider and see how the colors change, but having the color gradient reside **on**
 the slider gives the user a much more innate sense of what color they're selecting. This lets them click on the slider,
@@ -223,7 +223,7 @@ in LIFX-Control-Panel which shows some `ColorScale`s are being initialized.
 
 And here's what the scales look like once they're `grid`'d into the frame. 
 
-![example](../images/color-scale/example.png)
+![example](../../samclane-dev/flask_app/static/images/color-scale/example.png)
 
 Note that the labels and color displays aren't part of the `ColorScale` widget. They can be easily implemented however,
 by using the `get` method and a `trace` on the same variable` 

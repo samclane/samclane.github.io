@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-published: false
+published: true
 title: 2021-5-26-Surreal-Numbers-In-Python
 description: 'Part 1: Intro'
 ---

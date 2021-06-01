@@ -1,9 +1,9 @@
 ---
 layout: post
 comments: true
-published: false
+published: true
 title: Surreal Numbers in Python 2
-description: Object Oriented Approach and First Roadblocks
+description: Object Oriented Approach and Further Generation
 ---
 ## Recap
 
@@ -83,3 +83,23 @@ Another method of comparison for Surreals is known as "simplicity". One surreal 
 And we can also programatically check this is true:
 
 <iframe width="784" height="128" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/11?height=128" frameborder="0"></iframe>
+
+Now, generating these numbers from scratch will quickly get tedius, as on the second day the number of valid Surreals will jump from 3 to 24. We should come up with some sort of combinatoric solution. Skipping slightly ahead in *Grimm*, we can see the numbers generated on the 2nd day are:
+
+```
+0 = {|} 1 = {0|} −1 = {|0} {1|}
+{−1|} {0, 1|} {0, −1|} {−1, 1|}
+{−1, 0, 1|} {|1} {| − 1} {|0, 1}
+{|0, −1} {| − 1, 1} {| − 1, 0, 1} {−1|0}
+{−1|1} {−1|0, 1} {0|1} {−1, 0|1}.
+```
+
+The pattern expressed in the Left and Right sets is known as a **Power Set**. We can use a code recepie from the `itertools` module to simplify their creation.
+
+<iframe width="784" height="192" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/12?height=192" frameborder="0"></iframe>
+
+We can then (naievely) generate some Surreals. To save on memory and processing time, we will use an iterator instead of generating all values at once.
+
+<iframe width="784" height="769" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/13?height=769" frameborder="0"></iframe>
+
+But what exactly *are* these "numbers" we're creating? We'll explore that, as well as how dyadic rationals (and those beyond) will fit in as well.

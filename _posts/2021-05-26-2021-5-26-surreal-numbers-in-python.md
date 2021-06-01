@@ -35,15 +35,15 @@ number’s right set is less than or equal to the first number.
 
 We'll generate a set of numbers from the previous set. The iterations are referred to as "days", with the day as number is generated referred to as its "birthday". Getting started is a little bit tricky, but luckily Python provides some data structures that are isomorphic to our needs. Since we're computer scientists, we'll start on the **zeroth day**. We don't have any previous numbers, so our only option is the *empty set*, `()`, which is easily represented in Python by an empty `tuple`. This represents the number `0`, or as a surreal form, `{|}`. With our first actual number, we can apply our 2 rules to get `{0|}` and `{|0}`, corresponding to 1 and -1 respectively. 
 
-<iframe width="784" height="144" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/0?height=144" frameborder="0"></iframe>
+<iframe width="784" height="144" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/2?height=144" frameborder="0"></iframe>
 
 We'll also need code to formalize the second axiom- the defintiion of less-than-or-equal-to. From this rule we can begin to "order" our numbers.
 
-<iframe width="784" height="112" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/1?height=112" frameborder="0"></iframe>
+<iframe width="784" height="112" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/3?height=112" frameborder="0"></iframe>
 
 We can institute some tests in order to prove (especially to ourselves) that this implementation works, and is consistent with the Axioms presented.
 
-<iframe width="784" height="176" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/2?height=176" frameborder="0"></iframe>
+<iframe width="784" height="176" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/4?height=176" frameborder="0"></iframe>
 
 However, as we begin to grow our set of Surreals, which, by the 2nd day, will have grown from 3 to 20, we'll need a more intelligent way of generating and storing them. You may be thinking of "dunder" or "magic" class methods, and we'll begin exploring encapsulating Surreals in the next post.
 

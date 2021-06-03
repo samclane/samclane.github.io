@@ -1,4 +1,4 @@
 This is a Brave Rewards publisher verification file.
 
-Domain: samclane.github.io
-Token: c6b91cce99b6b3f046a96b3b5b2a3ea1c979259a32b29dd48ae683871531a859
+Domain: samclane.dev
+Token: 0129983bef8b6f658c4fe1eff9c6581bd2dc622dd486dc28cbb9c732f4e2ff7c

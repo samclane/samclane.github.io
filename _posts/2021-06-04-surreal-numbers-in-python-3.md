@@ -90,3 +90,7 @@ In order to cover the rest of the number-line, we need to come up with a general
             else:  # In-between
                 return (min(self.right_set) + max(self.left_set)) / 2
 ```
+
+## Going back
+
+We should be able to do the inverse of float-conversion, where we can pass a number to our class, and it converts it to a valid Surreal. 

@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-published: false
+published: true
 title: Surreal Numbers In Python 3
 description: Ratios and Rationalizations
 ---
@@ -93,4 +93,56 @@ In order to cover the rest of the number-line, we need to come up with a general
 
 ## Going back
 
-We should be able to do the inverse of float-conversion, where we can pass a number to our class, and it converts it to a valid Surreal. 
+We should be able to do the inverse of float-conversion, where we can pass a number to our class, and it converts it to a valid Surreal. However, we can't simply go from a decimal number to a Surreal; we're only able to generate numbers from a certain domain, so it stands to reason that using the same rules, we can only convert certain numbers back into Surreals. We can generate all integers (`k(n+1) = k(n) + 1`) and all dyadic rationals (`k(n+1) = (2(k(n) + 1) / 2^n`).
+
+To start, we'll use a simpler example that follows an easy pattern- the integers. We know that a positive integer-number `i` can be expressed in Surreal form as `{i-1|}`. Negative integers simply flip which set is used, as `i === {|i+1}`. Encapsulating our base-case of `zero`, we get the following code:
+
+```python
+
+    @classmethod
+    def from_int(cls, i: int):
+        if i == 0:
+            return Surreal.zero()
+        elif i > 0:
+            return Surreal(abs(i), (i-1,), nothing)
+        elif i < 0:
+            return Surreal(abs(i), nothing,(i+1,))
+        else:
+            raise Exception("NaN")
+```
+
+<iframe width="784" height="145" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/22?height=145" frameborder="0"></iframe>
+
+Dyadics are a bit harder than the plain integers, as one needs to find an odd-integer numerator N, and a denominator that's a power-of-2. Without going through the details of solving the equations, we find that the surreal form of dyadic `x` is ` { x - 1/2^{k} | x + 1/2^{k} }`. This will produce a number whose numeric-average is equal to `x`. 
+
+` (x - 1/2^{k}) + (x + 1/2^{k})/2 = 2x/2 = x`
+
+We can use Python's built-in `Fraction` class to help conver to rational-fractions, and store the `numerator` and `denominator` separately. We can also use `math.log2` to help us find `k`. 
+
+
+```python
+
+    @classmethod
+    def from_dyadic(cls, f: Union[Fraction, float]):
+        if isinstance(f, float):
+            f = Fraction(Decimal(f))
+        k = log2(f.denominator)
+        n = abs(f.numerator//2)+1
+        return Surreal(n, (f - (1/2)**k,), (f + (1/2)**k,))
+```
+
+To check, we can `assert` some quick tests:
+
+<iframe width="784" height="138" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/24?height=138" frameborder="0"></iframe>
+
+<iframe width="784" height="128" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/29?height=128" frameborder="0"></iframe>
+
+<iframe width="784" height="129" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/30?height=129" frameborder="0"></iframe>
+
+With all this in place, we can finally create a Surreal generation-function that includes the dyadic-rationals:
+
+<iframe width="784" height="929" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/34?height=929" frameborder="0"></iframe>
+
+---
+
+Full Jupyter notebook [here](https://datalore.jetbrains.com/view/notebook/y0irTQxpwjtJraOPVB5Kuf)

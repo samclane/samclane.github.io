@@ -113,9 +113,9 @@ To start, we'll use a simpler example that follows an easy pattern- the integers
 
 <iframe width="784" height="145" src="https://datalore.jetbrains.com/view/embed/y0irTQxpwjtJraOPVB5Kuf/22?height=145" frameborder="0"></iframe>
 
-Dyadics are a bit harder than the plain integers, as one needs to find an odd-integer numerator N, and a denominator that's a power-of-2. Without going through the details of solving the equations, we find that the surreal form of dyadic `x` is ` { x - 1/2^{k} | x + 1/2^{k} }`. This will produce a number whose numeric-average is equal to `x`. 
+Dyadics are a bit harder than the plain integers, as one needs to find an odd-integer numerator N, and a denominator that's a power-of-2. Without going through the details of solving the equations, we find that the surreal form of dyadic `x` is `{ x - 1/2^{k} | x + 1/2^{k} }`. This will produce a number whose numeric-average is equal to `x`. 
 
-` (x - 1/2^{k}) + (x + 1/2^{k})/2 = 2x/2 = x`
+`(x - 1/2^{k}) + (x + 1/2^{k})/2 = 2x/2 = x`
 
 We can use Python's built-in `Fraction` class to help conver to rational-fractions, and store the `numerator` and `denominator` separately. We can also use `math.log2` to help us find `k`. 
 

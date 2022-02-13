@@ -8,15 +8,12 @@ Missouri S&T Class of 2017
 
 ### More Information
 
-I'm currently searching for a career with a focus on Embedded Systems/Microcontrollers and/or Python development. If 
-you are hiring, or have any information about job opportunities, please email me at the address below. 
+I'm currently a Python Developer at [Boulder Labs](https://www.boulderlabs.com/). If you have any questions or comments, please feel free to reach out to me at one of the addresses below.
 
 ### Contact me
 
 [Github](https://github.com/samclane/)
 
 [LinkedIn](https://www.linkedin.com/in/samclane)
-
-[AngelList](https://angel.co/sawyer-5)
 
 [Ko-fi](Ko-fi.com/sawyermclane)

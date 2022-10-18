@@ -43,4 +43,13 @@ projects:
     - image_path: https://img.itch.zone/aW1hZ2UvMTA0MTc4NS81OTUwNzg0LnBuZw==/347x500/FZIflX.png
       title: TopDownPrototype
       link: https://samclane.itch.io/topdownprototype
+    - image_path: https://img.itch.zone/aW1hZ2UvMTYwNzY3MC85NjU3Nzc2LnBuZw==/347x500/7HYfHy.png
+      title: Infinishoot
+      link: https://samclane.itch.io/infinishoot
+    - image_path: https://img.itch.zone/aW1hZ2UvMTY2MjMxNi85Nzg5MDQyLnBuZw==/347x500/mSnN69.png
+      title: Primordius
+      link: https://samclane.itch.io/primordius
+    - image_path: https://storage.googleapis.com/production-thangs-public/uploads/attachments/82364099-cf15-429a-8ba1-ac3171f2dec7/IMG_20220923_051937.jpg
+      title: Smart Gas Sensor
+      link: https://github.com/samclane/GasSensor
 ---

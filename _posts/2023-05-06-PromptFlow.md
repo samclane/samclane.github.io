@@ -6,11 +6,12 @@ title: PromptFlow - FlowCharts for Chaining LLMs
 description: Chain together multiple LLM calls to supercharge GPT
 ---
 
+![PromptFlow](..\images\promptflow\heroscreenshot.png)
+
 # PromptFlow
 
-LLM applications are currently a rats-nest of LLM calls, with no way to visualize the flow of the application. Additionally, people are using GPT to things like make HTTP calls and interact with databases, all of which add even more complexity to the application. PromptFlow is a tool to help visualize the flow of your LLM application, and to help you chain together multiple LLM calls in a more user-friendly way.
+LLM applications are currently a rats-nest of LLM calls, with no way to visualize the flow of the application. Additionally, people are using GPT to things like make HTTP calls and interact with databases, all of which add even more complexity to the application. [PromptFlow](http://www.promptflow.org) is a tool to help visualize the flow of your LLM application, and to help you chain together multiple LLM calls in a more user-friendly way.
 
-![PromptFlow](..\images\promptflow\heroscreenshot.png)
 
 ## How PromptFlow Works
 
@@ -100,4 +101,4 @@ For a comprehensive guide to using PromptFlow, check out our official documentat
 
 ## Contributing to PromptFlow
 
-We welcome and encourage contributions to PromptFlow! You can contribute by building a node or helping us improve the existing ones. If you come across any bugs or issues, please don't hesitate to create an issue, open a pull request, or let us know in our Discord server.
+We welcome and encourage contributions to PromptFlow! You can contribute by building a node or helping us improve the existing ones. If you come across any bugs or issues, please don't hesitate to create an issue, open a pull request, or let us know in our [Discord](https://discord.com/invite/5MmV3FNCtN) server.

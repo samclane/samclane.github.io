@@ -18,27 +18,15 @@ html {
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  --text-color: #000;
-  --bg-color: #FFF;
-  color:  #FFF;
-  background-color: #000;
-}
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  background: $white;
+  font: 18px/1.4 $helvetica;
+  color: $darkGray;
 }
 
 .container {
   margin: 0 auto;
   max-width: 740px;
-  padding: 2px 16px;
+  padding: 0 10px;
   width: 100%;
 }
 
@@ -57,29 +45,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2em;
-  margin-bottom: 0.5em;
+  font-size: 30px;
   a {
     color: inherit;
   }
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 24px;
 }
 
 h3 {
-  font-size: 1.3em;
+  font-size: 20px;
 }
 
 h4 {
-  font-size: 1.1em;
+  font-size: 18px;
   color: $gray;
 }
 
 p {
-  font-size: 1em;
-  margin-bottom: 1em;
+  margin: 15px 0;
 }
 
 a {
@@ -296,21 +282,6 @@ footer {
   padding: 20px 0;
   text-align: center;
 }
-
-@media (max-width: 600px) {
-  .container {
-      width: 100%;
-  }
-}
-
-.button {
-  transition: background-color 0.5s ease;
-}
-
-.button:hover {
-  background-color: #888;
-}
-
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start

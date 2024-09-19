@@ -49,6 +49,9 @@ projects:
     - image_path: https://storage.googleapis.com/production-thangs-public/uploads/attachments/82364099-cf15-429a-8ba1-ac3171f2dec7/IMG_20220923_051937.jpg
       title: Smart Gas Sensor
       link: https://github.com/samclane/GasSensor
+    - image_path: https://github.com/samclane/rust-game/blob/main/screenshot.png?raw=true
+      title: Bevy Game (jumpy)
+      link: https://github.com/samclane/rust-game
     - image_path: https://github.com/samclane/mantle/blob/main/res/logo128.png?raw=true
       title: Mantle
       link: https://github.com/samclane/mantle

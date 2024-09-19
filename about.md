@@ -8,7 +8,7 @@ Missouri S&T Class of 2017
 
 ### More Information
 
-I'm currently a Python Developer at [Insurance Toolkits](https://www.insurancetoolkits.com/). If you have any questions or comments, please feel free to reach out to me at one of the addresses below.
+I'm currently looking for new jbo opportunities. If you're interested in working together, feel free to reach out.
 
 ### Contact me
 

@@ -16,10 +16,10 @@ projects:
     - image_path: /images/mycroft-ai/mycroft_logo.png
       title: LIFX-Mycroft
       link: https://github.com/samclane/lifx-mycroft
-    - image_path: https://github.com/samclane/daylio-analysis/raw/master/res/bokeh_screenshot.png
+    - image_path: https://github.com/samclane/daylio-analysis/raw/master/res/bokeh_screenshot.png?raw=true
       title: Daylio Data Analysis
       link: https://github.com/samclane/daylio-analysis
-    - image_path: https://github.com/samclane/daylio-analysis/blob/master/res/mood_jointgrid_correlation_sns.png?raw=true
+    - image_path: https://camo.githubusercontent.com/be93121d45b4e17e028b0858bdff4cee8a8fdc4beafb82c1f06b7b71eb98c030/68747470733a2f2f692e696d6775722e636f6d2f6347674f5249642e706e67
       title: DesktopBuddy
       link: https://github.com/samclane/DesktopBuddy
     - image_path: /images/social-graph/graph.png

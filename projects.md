@@ -19,7 +19,7 @@ projects:
     - image_path: https://github.com/samclane/daylio-analysis/raw/master/res/bokeh_screenshot.png
       title: Daylio Data Analysis
       link: https://github.com/samclane/daylio-analysis
-    - image_path: https://camo.githubusercontent.com/e873a644c0ff11d111161a0f044e834841576580/68747470733a2f2f692e696d6775722e636f6d2f4e455346324b4d2e676966
+    - image_path: https://github.com/samclane/daylio-analysis/blob/master/res/mood_jointgrid_correlation_sns.png?raw=true
       title: DesktopBuddy
       link: https://github.com/samclane/DesktopBuddy
     - image_path: /images/social-graph/graph.png
@@ -28,7 +28,7 @@ projects:
     - image_path: https://github.com/samclane/DiscordMud/raw/master/screenshots/4.png
       title: Discord MUD
       link: https://github.com/samclane/DiscordMud
-    - image_path: https://camo.githubusercontent.com/12adf4288357d03a1a0379e343dbbf0d842c71ef/68747470733a2f2f696d6775722e636f6d2f705931575546582e706e67
+    - image_path: https://github.com/samclane/DiscordMud/blob/master/screenshots/4.png?raw=true
       title: Snake-Cogs
       link: https://github.com/samclane/Snake-Cogs
     - image_path: https://camo.githubusercontent.com/3abf96f19f64139cff2c1feee8f954e8d26abcf9/68747470733a2f2f696d672e796f75747562652e636f6d2f76692f585039792d6f4c732d39492f302e6a7067
@@ -49,7 +49,7 @@ projects:
     - image_path: https://storage.googleapis.com/production-thangs-public/uploads/attachments/82364099-cf15-429a-8ba1-ac3171f2dec7/IMG_20220923_051937.jpg
       title: Smart Gas Sensor
       link: https://github.com/samclane/GasSensor
-    - image_path: https://github.com/samclane/mantle/blob/main/res/screenshot.png
+    - image_path: https://github.com/samclane/mantle/blob/main/res/logo128.png?raw=true
       title: Mantle
       link: https://github.com/samclane/mantle
 ---

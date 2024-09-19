@@ -28,9 +28,6 @@ projects:
     - image_path: https://github.com/samclane/DiscordMud/raw/master/screenshots/4.png
       title: Discord MUD
       link: https://github.com/samclane/DiscordMud
-    - image_path: https://github.com/samclane/gTTS-Demo/raw/master/hello/static/screenshot.png
-      title: gTTS Demo
-      link: https://stormy-earth-56044.herokuapp.com/
     - image_path: https://camo.githubusercontent.com/12adf4288357d03a1a0379e343dbbf0d842c71ef/68747470733a2f2f696d6775722e636f6d2f705931575546582e706e67
       title: Snake-Cogs
       link: https://github.com/samclane/Snake-Cogs
@@ -52,4 +49,7 @@ projects:
     - image_path: https://storage.googleapis.com/production-thangs-public/uploads/attachments/82364099-cf15-429a-8ba1-ac3171f2dec7/IMG_20220923_051937.jpg
       title: Smart Gas Sensor
       link: https://github.com/samclane/GasSensor
+    - image_path: https://github.com/samclane/mantle/blob/main/res/screenshot.png
+      title: Mantle
+      link: https://github.com/samclane/mantle
 ---

@@ -31,7 +31,7 @@ projects:
     - image_path: https://github.com/samclane/DiscordMud/blob/master/screenshots/4.png?raw=true
       title: Snake-Cogs
       link: https://github.com/samclane/Snake-Cogs
-    - image_path: https://camo.githubusercontent.com/3abf96f19f64139cff2c1feee8f954e8d26abcf9/68747470733a2f2f696d672e796f75747562652e636f6d2f76692f585039792d6f4c732d39492f302e6a7067
+    - image_path: https://camo.githubusercontent.com/2276837f12cadd7036c6ee852626b70bbbf36d66abb880ef33f3e3cf28848fd7/68747470733a2f2f696d672e796f75747562652e636f6d2f76692f585039792d6f4c732d39492f302e6a7067
       title: SoundDisplay
       link: https://github.com/samclane/SoundDisplay
     - image_path: /images/mycroft-ai/mycroft_logo.png

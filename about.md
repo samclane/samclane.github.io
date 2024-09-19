@@ -8,7 +8,7 @@ Missouri S&T Class of 2017
 
 ### More Information
 
-I'm currently looking for new jbo opportunities. If you're interested in working together, feel free to reach out.
+I'm currently looking for new job opportunities. If you're interested in working together, feel free to reach out.
 
 ### Contact me
 

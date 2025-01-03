@@ -277,14 +277,6 @@ impl eframe::App for MyApp {
 }
 ```
 
-In this example:
-
-- We define a MyApp struct to hold the color values.
-- We implement the eframe::App trait to create the application.
-- In the update function, we create sliders for hue, saturation, brightness, and kelvin.
-
-## Conclusion
-
 By creating a custom color_slider function, we've built a flexible and visually appealing way to adjust color parameters in a Rust application using Egui. This approach allows for extensive customization and can be adapted for various types of controls beyond color sliders.
 
 Feel free to extend this example by adding more features, such as alpha adjustment, presets, or anything else you can think of!

@@ -29,9 +29,9 @@
   top: 50%;
   height: 100%;
   width: auto;
-  -webkit-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .thumbnail img.portrait {
@@ -72,4 +72,14 @@
   color: white;
   font-size: 16px;
   padding: 16px 32px;
+}
+
+.dark-theme .popup {
+  background-color: #2f2f2f;
+  color: #dcdcdc;
+}
+
+.dark-theme .thumbnail {
+  background-color: #2f2f2f;
+  border: 1px solid #444;
 }

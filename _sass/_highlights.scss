@@ -1,4 +1,3 @@
-
 .highlight {
   background-color: #efefef;
   padding: 7px 7px 7px 10px;
@@ -82,3 +81,9 @@ code {
 .highlight .vg { color: #268BD2 } /* Name.Variable.Global */
 .highlight .vi { color: #268BD2 } /* Name.Variable.Instance */
 .highlight .il { color: #2AA198 } /* Literal.Number.Integer.Long */
+
+.dark-theme .highlight {
+  background: #2f2f2f;
+  color: #dcdcdc;
+  border: 1px solid #444;
+}

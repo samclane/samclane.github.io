@@ -292,3 +292,37 @@ footer {
 @import "gallery";
 @import "preview";
 @import "index";
+
+// Dark theme overrides
+.dark-theme {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+.dark-theme a {
+  color: #6ab4ff;
+}
+
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5,
+.dark-theme h6 {
+  color: #f0f0f0;
+}
+
+.dark-theme .posts > .post {
+  background: #1e1e1e;
+  border-radius: 8px;
+}
+
+.dark-theme .wrapper-footer {
+  background-color: #181818;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.dark-theme .site-description {
+  color: #999;
+}

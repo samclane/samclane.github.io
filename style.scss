@@ -177,6 +177,9 @@ img {
 
   img {
     border-radius: 5px;
+    .dark-theme & {
+      filter: invert(1);
+    }
   }
 }
 

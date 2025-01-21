@@ -12,13 +12,13 @@ projects:
       link: https://github.com/samclane/mantle
     - image_path: https://github.com/samclane/promptflow/raw/main/screenshots/readme/heroscreenshot.png?raw=true
       title: Promptflow
+      link: https://github.com/samclane/promptflow
     - image_path: https://storage.googleapis.com/production-thangs-public/uploads/attachments/82364099-cf15-429a-8ba1-ac3171f2dec7/IMG_20220923_051937.jpg
       title: Smart Gas Sensor
       link: https://github.com/samclane/GasSensor
     - image_path: https://github.com/samclane/rust-game/blob/main/screenshot.png?raw=true
       title: Bevy Game (jumpy)
       link: https://github.com/samclane/rust-game
-      link: https://github.com/samclane/promptflow
     - image_path: https://img.itch.zone/aW1hZ2UvMTYwNzY3MC85NjU3Nzc2LnBuZw==/347x500/7HYfHy.png
       title: Infinishoot
       link: https://samclane.itch.io/infinishoot
@@ -58,5 +58,4 @@ projects:
     - image_path: https://camo.githubusercontent.com/be93121d45b4e17e028b0858bdff4cee8a8fdc4beafb82c1f06b7b71eb98c030/68747470733a2f2f692e696d6775722e636f6d2f6347674f5249642e706e67
       title: DesktopBuddy
       link: https://github.com/samclane/DesktopBuddy
-    - image_path:
 ---

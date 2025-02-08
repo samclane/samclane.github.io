@@ -480,4 +480,8 @@ If running in a notebook, you'll hear the sound file play. If you're running thi
 
 I ran this for about 100 total epochs, over a few days, and the results were pretty good. I was able to get a lot of the usernames to pronounce correctly, and the ones that didn't were usually due to them being overly long (for example `supercalafragalisticexpialadocous` outputs `S AH0 P ER0 K AE1 L AH0 S AH0 S AH0 S`), but it worked surprisingly well for most usernames in my Discord server.
 
-There are many useful papers on this topic, but I found [this one](https://arxiv.org/pdf/2104.04091) useful in understanding the current state of the art. Existing models such as `SpeechBrain` are much more complex and powerful than mine, and can be found at [this HuggingFace page](https://huggingface.co/speechbrain/soundchoice-g2p). I'll be putting my smaller, specialized model and dataset on my HuggingFace soon, in case anyone is interested in either.
+There are many useful papers on this topic, but I found [this one](https://arxiv.org/pdf/2104.04091) useful in understanding the current state of the art. Existing models such as `SpeechBrain` are much more complex and powerful than mine, and can be found at [this HuggingFace page](https://huggingface.co/speechbrain/soundchoice-g2p).
+
+The HuggingFace Model can be found [here](https://huggingface.co/samclane/usernameg2p).
+
+The processed username dataset can be found here [here](https://huggingface.co/datasets/samclane/username_pronunciation).

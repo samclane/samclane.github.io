@@ -626,6 +626,26 @@ code, kbd, samp {
 
 .project-card:hover .project-thumb img { transform: scale(1.04); }
 
+// Shown when a project has no image or its image fails to load
+.project-thumb.is-missing {
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(var(--border) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(90deg, var(--border) 1px, transparent 1px) 0 0 / 22px 22px,
+    radial-gradient(circle at 30% 20%, var(--accent-soft), transparent 70%),
+    var(--bg-sunken);
+
+  &::before {
+    content: attr(data-initial);
+    font-family: var(--font-mono);
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--accent);
+    opacity: .85;
+  }
+}
+
 .project-body {
   display: flex;
   flex-direction: column;

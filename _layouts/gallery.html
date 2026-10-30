@@ -12,8 +12,11 @@ layout: default
     {% for project in page.projects %}
     <li>
       <a class="project-card" href="{{ project.link }}">
-        <div class="project-thumb">
-          <img src="{{ project.image_path }}" alt="" loading="lazy" decoding="async" />
+        <div class="project-thumb{% unless project.image_path %} is-missing{% endunless %}" data-initial="{{ project.title | slice: 0 }}">
+          {% if project.image_path %}
+          <img src="{{ project.image_path | relative_url }}" alt="" loading="lazy" decoding="async"
+               onerror="this.parentNode.classList.add('is-missing'); this.remove();" />
+          {% endif %}
         </div>
         <div class="project-body">
           <h2 class="project-title">{{ project.title }}</h2>

@@ -27,9 +27,9 @@ footer-links:
   pinterest:
   rss: anything # just type anything here for a working RSS icon
   twitter: samclane
+  bluesky: samclane.bsky.social
   stackoverflow: users/1486262/sawyer
   youtube: channel/UC6Yol2a1jqlWx6fCTBAXkzA
-  googleplus: # anything in your profile username that comes after plus.google.com/
   kofi: sawyermclane
   itch: samclane
 
@@ -38,11 +38,13 @@ footer-links:
 disqus: samclane-github-io
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics: UA-64844237-1
+# Universal Analytics (UA-) properties stopped collecting data in July 2023.
+# Put a GA4 measurement ID (G-XXXXXXX) here to re-enable analytics.
+# google_analytics: UA-64844237-1
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: http://samclane.github.io
+url: https://samclane.dev
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (http://yourusername.github.io/repository-name)

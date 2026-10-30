@@ -1,88 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
-
     {% include meta.html %}
 
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <script>
+      // Set theme before first paint to avoid a flash of the wrong colors
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (!t) t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
 
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ '/feed.xml' | relative_url }}" />
 
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
     {% seo %}
   </head>
 
-  <body class="dark-theme">
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead fade-in clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-          <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-            <p class="site-description">{{ site.description }}</p>
-          </div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="{{ '/' | relative_url }}">
+          <img class="brand-avatar" src="{{ site.avatar }}" alt="" width="36" height="36" />
+          <span class="brand-name">{{ site.name }}</span>
+        </a>
 
-          <nav>
-            <a href="{{ site.baseurl }}/">Blog</a>
-            <a href="{{ site.baseurl }}/projects">Projects</a>
-            <a href="{{ site.baseurl }}/about">About Me</a>
-          </nav>
-        </header>
+        <nav class="site-nav" aria-label="Main">
+          <a href="{{ '/' | relative_url }}" {% if page.url == '/' or page.layout == 'post' or paginator.page > 1 %}aria-current="page"{% endif %}>Blog</a>
+          <a href="{{ '/projects/' | relative_url }}" {% if page.url == '/projects/' %}aria-current="page"{% endif %}>Projects</a>
+          <a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}aria-current="page"{% endif %}>About</a>
+          <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme">
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          </button>
+        </nav>
       </div>
-    </div>
+    </header>
 
-    <div id="main" role="main" class="container">
+    <main id="main" class="container">
       {{ content }}
-      <!-- Pagination links -->
+
       {% if paginator.total_pages > 1 %}
-      <div class="pagination">
+      <nav class="pagination" aria-label="Pagination">
         {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | relative_url }}">
-          &laquo; Prev
-        </a>
+          <a class="pagination-step" href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a>
         {% else %}
-        <span>&laquo; Prev</span>
+          <span class="pagination-step is-disabled">&larr; Newer</span>
         {% endif %}
 
-        {% for page in (1..paginator.total_pages) %}
-        {% if page == paginator.page %}
-        <em>{{ page }}</em>
-        {% elsif page == 1 %}
-        <a href="{{ paginator.previous_page_path | relative_url }}">
-          {{ page }}
-        </a>
-        {% else %}
-        <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">
-          {{ page }}
-        </a>
-        {% endif %}
+        <span class="pagination-pages">
+        {% for p in (1..paginator.total_pages) %}
+          {% if p == paginator.page %}
+            <span class="is-current" aria-current="page">{{ p }}</span>
+          {% elsif p == 1 %}
+            <a href="{{ '/' | relative_url }}">{{ p }}</a>
+          {% else %}
+            <a href="{{ site.paginate_path | relative_url | replace: ':num', p }}">{{ p }}</a>
+          {% endif %}
         {% endfor %}
+        </span>
 
         {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | relative_url }}">
-          Next &raquo;
-        </a>
+          <a class="pagination-step" href="{{ paginator.next_page_path | relative_url }}">Older &rarr;</a>
         {% else %}
-        <span>Next &raquo;</span>
+          <span class="pagination-step is-disabled">Older &rarr;</span>
         {% endif %}
-      </div>
+      </nav>
       {% endif %}
-    </div>
+    </main>
 
-
-
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="social-links">
           {% include svg-icons.html %}
-        </footer>
+        </div>
+        <p class="footer-note">&copy; {{ site.time | date: '%Y' }} {{ site.name }}</p>
       </div>
-    </div>
+    </footer>
+
+    <script>
+      document.querySelector(".theme-toggle").addEventListener("click", function () {
+        var root = document.documentElement;
+        var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    </script>
 
     {% include analytics.html %}
   </body>

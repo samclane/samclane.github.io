@@ -3,19 +3,28 @@ layout: default
 ---
 
 <article class="page">
-    <table class="photo-gallery">
-        {% tablerow project in page.projects cols:4 %}
-            <a href="{{ project.link }}">
+  <header class="page-header page-header-wide">
+    <h1 class="page-title">{{ page.title }}</h1>
+    {% if page.lead %}<p class="post-lead">{{ page.lead }}</p>{% endif %}
+  </header>
 
-                <div class="thumbnail">
-                    <img src="{{ project.image_path }}" alt="{{ project.title}}" class="image portrait"/>
-                    <div class="middle">
-                        <div class="popup">{{ project.title}}</div>
-                    </div>
-                </div>
-
-            </a>
-        {% endtablerow %}
-    </table>
+  <ul class="project-grid">
+    {% for project in page.projects %}
+    <li>
+      <a class="project-card" href="{{ project.link }}">
+        <div class="project-thumb">
+          <img src="{{ project.image_path }}" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="project-body">
+          <h2 class="project-title">{{ project.title }}</h2>
+          {% if project.description %}<p class="project-desc">{{ project.description }}</p>{% endif %}
+          <span class="project-host">
+            {% if project.link contains 'itch.io' %}itch.io{% elsif project.link contains 'github.com' %}GitHub{% else %}Link{% endif %}
+            <span aria-hidden="true">&nearr;</span>
+          </span>
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
 </article>
-

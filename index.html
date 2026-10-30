@@ -2,23 +2,34 @@
 layout: default
 ---
 
-<div class="posts">
+{% if paginator.page == 1 %}
+<section class="hero">
+  <p class="eyebrow">Hi, I'm Sawyer 👋</p>
+  <h1 class="hero-title">I build things with <span class="accent">Python</span>, <span class="accent">embedded&nbsp;hardware</span>, and <span class="accent">games</span>.</h1>
+  <p class="hero-sub">Computer engineer writing about side projects, tools, and whatever rabbit hole I fell into this month.</p>
+  <div class="hero-actions">
+    <a class="button button-primary" href="{{ '/projects/' | relative_url }}">See projects</a>
+    <a class="button" href="https://github.com/{{ site.footer-links.github }}">GitHub &nearr;</a>
+  </div>
+</section>
+{% endif %}
+
+<section class="post-list" aria-labelledby="writing-heading">
+  <h2 id="writing-heading" class="section-title">{% if paginator.page == 1 %}Latest writing{% else %}Writing &middot; page {{ paginator.page }}{% endif %}</h2>
+
   {% for post in paginator.posts %}
-  <article class="post">
-
-    <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-
-    <div class="date">
-      {{ post.date | date: "%B %e, %Y" }}
+  {% assign words = post.content | number_of_words %}
+  <article class="post-card">
+    <div class="post-meta">
+      <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+      <span aria-hidden="true">&middot;</span>
+      <span>{{ words | divided_by: 220 | plus: 1 }} min read</span>
     </div>
-
-    <hr>
-
-    <div class="entry">
-      {{ post.excerpt }}
-    </div>
-
-    <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    <h3 class="post-card-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    {% if post.description %}<p class="post-card-desc">{{ post.description }}</p>{% endif %}
+    {% assign excerpt = post.excerpt | strip_html | strip %}
+    {% if excerpt != "" %}<p class="post-card-excerpt">{{ excerpt | truncatewords: 38 }}</p>{% endif %}
+    <a class="read-more" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title }}">Read post <span aria-hidden="true">&rarr;</span></a>
   </article>
   {% endfor %}
-</div>
+</section>

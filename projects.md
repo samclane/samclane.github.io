@@ -5,6 +5,10 @@ permalink: /projects/
 lead: "Things I've built: desktop apps, embedded gadgets, Discord bots, and games."
 redirect_from: /portfolio/
 projects:
+    - image_path: /images/projects/sefer.webp
+      title: Sefer
+      description: "Software-naming lookup: check a project name against 4M+ existing names from package registries and other sources before you commit to it."
+      link: https://sefer.samclane.dev/
     - image_path: /images/projects/lifx-control-panel.webp
       title: LIFX-Control-Panel
       description: "Desktop app for LIFX smart lights, with screen-color sync, an eyedropper, and keybindings. Succeeded by Mantle."

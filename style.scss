@@ -190,6 +190,14 @@ em, i { font-style: italic; }
   box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--border-strong);
 }
 
+// ponytail: avatar is black line art on transparency, so flip it for dark mode.
+// filter also inverts background/box-shadow, hence dropping both. Remove if the avatar changes.
+[data-theme="dark"] .brand-avatar {
+  filter: invert(1);
+  background: none;
+  box-shadow: none;
+}
+
 .brand-name {
   font-family: var(--font-display);
   font-size: 17px;

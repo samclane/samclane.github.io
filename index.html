@@ -15,7 +15,8 @@ layout: default
 {% endif %}
 
 <section class="post-list" aria-labelledby="writing-heading">
-  <h2 id="writing-heading" class="section-title">{% if paginator.page == 1 %}Latest writing{% else %}Writing &middot; page {{ paginator.page }}{% endif %}</h2>
+  {% if paginator.page == 1 %}{% assign hx = "h2" %}{% else %}{% assign hx = "h1" %}{% endif %}
+  <{{ hx }} id="writing-heading" class="section-title">{% if paginator.page == 1 %}Latest writing{% else %}Writing &middot; page {{ paginator.page }}{% endif %}</{{ hx }}>
 
   {% for post in paginator.posts %}
   {% assign words = post.content | number_of_words %}
@@ -29,7 +30,8 @@ layout: default
     {% if post.description %}<p class="post-card-desc">{{ post.description }}</p>{% endif %}
     {% assign excerpt = post.excerpt | strip_html | strip %}
     {% if excerpt != "" %}<p class="post-card-excerpt">{{ excerpt | truncatewords: 38 }}</p>{% endif %}
-    <a class="read-more" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title }}">Read post <span aria-hidden="true">&rarr;</span></a>
+    {%- comment -%} ponytail: duplicate of the card-title link (which covers the card), so hidden from AT and tab order {%- endcomment %}
+    <a class="read-more" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1">Read post <span>&rarr;</span></a>
   </article>
   {% endfor %}
 </section>

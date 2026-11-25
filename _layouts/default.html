@@ -30,7 +30,7 @@
 
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="{{ '/' | relative_url }}">
+        <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.name }}">
           <img class="brand-avatar" src="{{ site.avatar }}" alt="" width="36" height="36" />
           <span class="brand-name">{{ site.name }}</span>
         </a>
@@ -39,7 +39,7 @@
           <a href="{{ '/' | relative_url }}" {% if page.url == '/' or page.layout == 'post' or paginator.page > 1 %}aria-current="page"{% endif %}>Blog</a>
           <a href="{{ '/projects/' | relative_url }}" {% if page.url == '/projects/' %}aria-current="page"{% endif %}>Projects</a>
           <a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}aria-current="page"{% endif %}>About</a>
-          <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme">
+          <button class="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="true" title="Toggle color theme">
             <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
             <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
           </button>
@@ -89,12 +89,18 @@
     </footer>
 
     <script>
-      document.querySelector(".theme-toggle").addEventListener("click", function () {
+      (function () {
         var root = document.documentElement;
-        var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-        root.setAttribute("data-theme", next);
-        try { localStorage.setItem("theme", next); } catch (e) {}
-      });
+        var btn = document.querySelector(".theme-toggle");
+        function sync() { btn.setAttribute("aria-pressed", root.getAttribute("data-theme") === "dark"); }
+        sync();
+        btn.addEventListener("click", function () {
+          var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          sync();
+          try { localStorage.setItem("theme", next); } catch (e) {}
+        });
+      })();
     </script>
 
     {% include analytics.html %}

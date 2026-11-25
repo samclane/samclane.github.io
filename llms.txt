@@ -1,0 +1,30 @@
+---
+layout: null
+permalink: /llms.txt
+---
+{%- assign projects = site.pages | where: "name", "projects.md" | first -%}
+# {{ site.name }}
+
+> {{ site.description }}. Personal blog and project portfolio of {{ site.name }}, a computer engineer writing about side projects, tools, and experiments.
+
+Posts are tutorials and project write-ups, mostly in Python, Rust, and Arduino/embedded C. Each link goes to the post's HTML page.
+
+## Pages
+
+- [About]({{ '/about/' | absolute_url }}): Background and links to other profiles
+- [Projects]({{ '/projects/' | absolute_url }}): Gallery of software, hardware, and game projects
+
+## Posts
+{% for post in site.posts %}
+- [{{ post.title }}]({{ post.url | absolute_url }}){% if post.description %}: {{ post.description }}{% endif %}
+{%- endfor %}
+
+## Projects
+{% for project in projects.projects %}
+- [{{ project.title }}]({{ project.link }}){% if project.description %}: {{ project.description }}{% endif %}
+{%- endfor %}
+
+## Optional
+
+- [Atom feed]({{ '/feed.xml' | absolute_url }}): Full post content
+- [GitHub](https://github.com/{{ site.footer-links.github }}): Source for most projects
